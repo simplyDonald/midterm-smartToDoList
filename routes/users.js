@@ -21,6 +21,25 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+  router.post("/register", (req, res) => {
+    const values= [req.body.email,req.body.password,req.body.first_name, req.body.last_name, req.body.birth_date]
+    db.query(`
+    INSERT into users (email, password, first_name, last_name, birth_date)
+    VALUES ($1,$2,$3,$4,$5)
+    RETURNING *
+    `, values)
+      .then(data => {
+        const users = data.rows;
+        res.json({ users });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+
   return router;
 };
 
