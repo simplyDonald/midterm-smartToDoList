@@ -1,4 +1,11 @@
--- Widgets table seeds here (Example)
-INSERT INTO widgets (name, user_id) VALUES ('Sprockets', 1);
-INSERT INTO widgets (name, user_id) VALUES ('Chains', 2);
-INSERT INTO widgets (name, user_id) VALUES ('Bearings', 2);
+INSERT INTO items (name,id, user_id, category_id)
+VALUES ('Buy Gucci handbags',1, 1,101),
+('Watch the red notice movie', 2, 1,102),
+('eat at wendy"s', 3, 3,103);
+
+INSERT INTO categories (id,name)
+VALUES (101,'Films/Series'),
+(102,'Restaurants'),
+(103,'Books'),
+(104,'Shopping'),
+(105,'Others');
