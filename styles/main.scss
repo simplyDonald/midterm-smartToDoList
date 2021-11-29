@@ -14,4 +14,8 @@ body {
     rgba(163, 208, 219, 1) 74%,
     rgba(163, 208, 219, 1) 100%
   );
+  .row {
+    display: flex;
+    justify-content: space-around;
+  }
 }
