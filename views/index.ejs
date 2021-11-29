@@ -19,7 +19,41 @@
 
 </head>
   <body>
-    <h1>Have fun! 🥔</h1>
+
+    <nav>
+    <% -include("partials/_navbar") %>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div id="tagline">
+          <h2>
+            Save your thoughts the smart way
+          </h2>
+        </div>
+        <div id="loginform">
+          <h3>Login</h3>
+          <form method="POST" action="/login">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" class="form-control col-md-4 col-12" name="email" placeholder="abc@yahoo.com">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control col-md-4 col-12" name="password" placeholder="Password">
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-10 col-12">
+                <button type="submit" class="btn btn-primary">Login</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+      </div>
+    </div>
 
     <!-- JQuery Scripts CDN -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
