@@ -5,12 +5,13 @@ body {
     display: flex;
     justify-content: space-around;
 
-    .login-text {
+    .form-header {
       text-align: center;
     }
 
     #tagline {
       align-self: center;
+      font-weight: 700;
     }
   }
 }
