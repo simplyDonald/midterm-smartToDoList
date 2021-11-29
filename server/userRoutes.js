@@ -67,9 +67,10 @@ module.exports = function (router, database) {
   });
 
   //user adds item to todolist
-  router.post("/:user_id/add_item", (req,res) => {
-    const item = req.body
-    database.addItem(item)
+  router.post("/:user_id", (req,res) => {
+    const user= req.sessions.userId
+    const item = req.body.name
+    database.addItem(item,user)
       .then((res) => {
         if(!item){
           res.send({error: "no item in body"})
@@ -79,7 +80,20 @@ module.exports = function (router, database) {
       })
       .catch((e) => res.send(e));
   })
-  //
+  //user can edit item in list
+  router.post("/:item_id", (req,res) => {
+      const name = req.body.name
+      const item = req.params.item_id
+      database.editItem(item,name)
+      .then((res) => {
+        if(!item){
+          res.send({error: "no item in body"})
+          return;
+        }
+        res.send(item);
+      })
+      .catch((e) => res.send(e));
+  })
 
 
 

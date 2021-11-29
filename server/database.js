@@ -37,7 +37,7 @@ exports.getUserWithId = getUserWithId;
 
 //add user to database
 const addUser =  function(user) {
-  const values= [req.body.email,req.body.password,req.body.first_name, req.body.last_name, req.body.birth_date]
+  const values= [user.email,user.password,user.first_name, user.last_name, user.birth_date]
   return pool
   .query ((`
     INSERT into users (email, password, first_name, last_name, birth_date)
@@ -52,10 +52,10 @@ const addUser =  function(user) {
   exports.addUser = addUser;
 
   //add item to database
-  const addItem = function(item) {
+  const addItem = function(item,user) {
       //will hardcode category_id now and later replace with function that will get categoryid
       const category_id = 101
-      const values = [category_id, req.sessions.user_id, req.body.name]
+      const values = [category_id, user, item]
     return pool
     .query (`INSERT into items (category_id, user_id, name)
         VALUES ($1, $2, $3)
@@ -74,8 +74,8 @@ const addUser =  function(user) {
     exports.addItem = addItem;
 
     //add an endpoint for editing item name
-    const editItem = function(item) {
-      const values = [req.body.name, req.params.id]
+    const editItem = function(item, name) {
+      const values = [name, item]
       return pool
       .query(`UPDATE items
         SET name =$1
@@ -94,4 +94,3 @@ const addUser =  function(user) {
       exports.editItem = editItem;
 
       //add an endpoint for deleting item
-      
