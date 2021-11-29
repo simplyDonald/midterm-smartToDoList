@@ -1,6 +1,21 @@
 // See: https://sass-lang.com/
 
-body,
+body {
+  .row {
+    display: flex;
+    justify-content: space-around;
+
+    .login-text {
+      text-align: center;
+    }
+
+    #tagline {
+      align-self: center;
+    }
+  }
+}
+
 html {
   margin: 0;
+  font-family: 'Roboto', sans-serif; ;
 }
