@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>Smart TODO List - My Lists</title>
+
+<head>
+  <!-- Meta Information -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+</head>
+  <body>
+    <% -include("partials/_navbar") %>
+
+    <!-- Add New Items Form -->
+    <header id="userpage">
+      <div class="new-item-field">
+      <form method="POST" actions="/:user_id"></form>
+        <input id="input-item" class="form-control" type="text" placeholder="What task would you like to include?">
+        <button id="add-item" class="btn btn-submit"><img src="https://img.icons8.com/carbon-copy/100/000000/add.png"/></button>
+      </div>
+    </header>
+
+    <!-- Categories Lists Containers -->
+    <!-- Needs Category ids to link item to list-->
+    <main class="categories-container">
+
+      <!-- To Buy List -->
+      <div class="card-toBuyList">
+        <img src="https://img.icons8.com/external-bearicons-detailed-outline-bearicons/64/000000/external-book-call-to-action-bearicons-detailed-outline-bearicons.png"/>
+        <h5 class="list-name">To Buy</h5>
+        <div class="card-body">
+          <ul id="toBuy-items" class="list-group list-group-flush">
+          </ul>
+        </div>
+      </div>
+
+      <!-- To Eat List -->
+      <div class="card-toEatList">
+        <img src="https://img.icons8.com/external-icongeek26-outline-gradient-icongeek26/64/000000/external-clapper-cinema-icongeek26-outline-gradient-icongeek26.png"/>
+        <h5 class="list-name">To Eat</h5>
+        <div class="card-body">
+          <ul id="toEat-items" class="list-group list-group-flush">
+          </ul>
+        </div>
+      </div>
+
+      <!-- To Watch List -->
+      <div class="card-toWatchList">
+        <img src="https://img.icons8.com/ios/64/000000/cinema-film-play.png"/>
+        <h5 class="list-name">To Watch</h5>
+        <div class="card-body">
+          <ul id="toWatch-items" class="list-group list-group-flush">
+          </ul>
+        </div>
+      </div>
+
+      <!-- To Read List -->
+      <div class="card-toReadList">
+        <img src="https://img.icons8.com/external-bearicons-detailed-outline-bearicons/64/000000/external-book-call-to-action-bearicons-detailed-outline-bearicons.png"/>
+        <h5 class="list-name">To Read</h5>
+        <div class="card-body">
+          <ul id="toRead-items" class="list-group list-group-flush">
+          </ul>
+        </div>
+      </div>
+
+    </main>
