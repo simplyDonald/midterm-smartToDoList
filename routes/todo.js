@@ -49,55 +49,20 @@ module.exports = (db) => {
         db.query(`UPDATE items
         SET name =$1
         WHERE items.id = $2
-<<<<<<< HEAD
-        `, values)
-        .then(data => {
-          const items = data.rows;
-          res.json({ items });
-        })
-        .catch(err => {
-          res
-            .status(500)
-            .json({ error: err.message });
-        });
-      })
-    //add an endpoint for deleting item
-    router.post("/:id", (req,res) =>{
-      const values = [req.body.name, req.params.id]
-        db.query(`DELETE FROM items
-        WHERE 
-        AND items.id = $2
-        `, values)
-        .then(data => {
-          const items = data.rows;
-          res.json({ items });
-        })
-        .catch(err => {
-          res
-            .status(500)
-            .json({ error: err.message });
-        });
-      })
-
-
-=======
 
 
         `)
->>>>>>> 054d56e00a5fa2616fc4803fa3e5ad484e4ddd0f
 
 
 
 
-<<<<<<< HEAD
-=======
     })
 
   //add an endpoint for deleting item
   router.post("/:id", (req,res) =>{
   const values = [req.body.name, req.params.id]
     db.query(`DELETE FROM items
-    WHERE 
+    WHERE
     AND items.id = $2
     `, values)
     .then(data => {
@@ -111,7 +76,6 @@ module.exports = (db) => {
     });
   })
 
->>>>>>> 054d56e00a5fa2616fc4803fa3e5ad484e4ddd0f
 
 
 
