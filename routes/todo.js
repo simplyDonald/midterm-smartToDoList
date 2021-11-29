@@ -51,7 +51,6 @@ module.exports = (db) => {
         WHERE items.id = $2
 
 
-
         `)
 
 
@@ -59,6 +58,23 @@ module.exports = (db) => {
 
     })
 
+  //add an endpoint for deleting item
+  router.post("/:id", (req,res) =>{
+  const values = [req.body.name, req.params.id]
+    db.query(`DELETE FROM items
+    WHERE 
+    AND items.id = $2
+    `, values)
+    .then(data => {
+      const items = data.rows;
+      res.json({ items });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+  })
 
 
 
