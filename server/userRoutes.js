@@ -94,7 +94,12 @@ module.exports = function (router, database) {
       })
       .catch((e) => res.send(e));
   })
-
+//user can delete item in list
+router.post("/:item_id", (req,res) =>{
+    const item = req.params.item_id
+    database.deleteItem(item)
+    
+})
 
 
 

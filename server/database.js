@@ -93,4 +93,21 @@ const addUser =  function(user) {
       };
       exports.editItem = editItem;
 
-      //add an endpoint for deleting item
+    //add an endpoint for deleting item
+      const deleteItem = function(item) {
+        return pool
+        .query(`DELETE FROM items
+          WHERE items.id = $1
+          `, [item])
+          .then(data => {
+            const items = data.rows;
+            res.json({ items });
+          })
+          .catch(err => {
+            res
+              .status(500)
+              .json({ error: err.message });
+          })
+        };
+
+
