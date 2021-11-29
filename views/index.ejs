@@ -11,6 +11,12 @@
   <!-- Bootstrap CSS CDN -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+
+
   <!-- App CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -31,25 +37,49 @@
             Save your thoughts the smart way
           </h2>
         </div>
-        <div id="loginform">
-          <h3>Login</h3>
-          <form method="POST" action="/login">
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="text" class="form-control col-md-4 col-12" name="email" placeholder="abc@yahoo.com">
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control col-md-4 col-12" name="password" placeholder="Password">
-            </div>
+        <div class="flip-container">
+          <div class="flipper" id="flipper">
+            <div class="register-form" class="col-md-4 col-12">
+              <h3>Create New Account</h3>
+              <form method="POST" action="/register">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="text" class="form-control col-md-4" name="email" placeholder="abc@yahoo.com">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control col-md-4" name="password" placeholder="Password">
+                </div>
 
-            <div class="form-group row">
-              <div class="col-sm-10 col-12">
-                <button type="submit" class="btn btn-primary">Login</button>
-              </div>
+                <div class="form-group row">
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                  </div>
+                </div>
+              </form>
             </div>
-          </form>
+            <div class="login-form" class="col-md-4 col-12">
+              <h3 class="login-text">Login</h3>
+              <form method="POST" action="/login">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="text" class="form-control" name="email" placeholder="abc@yahoo.com">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-10 col-12">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
+
 
 
       </div>
