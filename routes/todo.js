@@ -43,27 +43,20 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
     })
-    //add an endpoint for editing item name
+  //add an endpoint for editing item name
     router.post("/:id", (req,res) =>{
       const values = [req.body.name, req.params.id]
         db.query(`UPDATE items
         SET name =$1
         WHERE items.id = $2
-
-
         `)
-
-
-
-
     })
 
   //add an endpoint for deleting item
-  router.post("/:id", (req,res) =>{
-  const values = [req.body.name, req.params.id]
+  router.delete("/:id", (req,res) =>{
+  const values = [req.params.id]
     db.query(`DELETE FROM items
-    WHERE
-    AND items.id = $2
+    WHERE items.id = $1
     `, values)
     .then(data => {
       const items = data.rows;
