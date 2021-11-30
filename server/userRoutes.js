@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const database = require('./databaseHelper');
 
 module.exports = function (router, database) {
   //create a new user
@@ -98,11 +99,11 @@ module.exports = function (router, database) {
 router.post("/:item_id", (req,res) =>{
     const item = req.params.item_id
     database.deleteItem(item)
-    
+    .then((res) =>{
+      return;
+    })
+    .catch((e) => res.send(e));
+
 })
-
-
-
-
   return router;
 };

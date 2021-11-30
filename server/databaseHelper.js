@@ -1,15 +1,7 @@
-const { Pool } = require('pg');
-
-const pool = new Pool({
-  user: 'labber',
-  password: 'labber',
-  host: 'localhost',
-  database: 'midterm'
-});
 
 //Get a single user from the database given their email.
-const getUserWithEmail = function(email) {
-  return pool
+const getUserWithEmail = function(email,db) {
+  return db
   .query((`
   SELECT * FROM users
   WHERE email = $1
@@ -22,8 +14,8 @@ const getUserWithEmail = function(email) {
 exports.getUserWithEmail = getUserWithEmail;
 
 //Get a single user from the database given their id
-const getUserWithId = function(id) {
-  return pool
+const getUserWithId = function(id,db) {
+  return db
   .query((`
   SELECT * FROM users
   WHERE id = $1
@@ -36,9 +28,9 @@ const getUserWithId = function(id) {
 exports.getUserWithId = getUserWithId;
 
 //add user to database
-const addUser =  function(user) {
+const addUser =  function(user,db) {
   const values= [user.email,user.password,user.first_name, user.last_name, user.birth_date]
-  return pool
+  return db
   .query ((`
     INSERT into users (email, password, first_name, last_name, birth_date)
     VALUES ($1,$2,$3,$4,$5)
@@ -52,11 +44,11 @@ const addUser =  function(user) {
   exports.addUser = addUser;
 
   //add item to database
-  const addItem = function(item,user) {
+  const addItem = function(item,user,db) {
       //will hardcode category_id now and later replace with function that will get categoryid
       const category_id = 101
       const values = [category_id, user, item]
-    return pool
+    return db
     .query (`INSERT into items (category_id, user_id, name)
         VALUES ($1, $2, $3)
         RETURNING *
@@ -74,9 +66,9 @@ const addUser =  function(user) {
     exports.addItem = addItem;
 
     //add an endpoint for editing item name
-    const editItem = function(item, name) {
+    const editItem = function(item, name,db) {
       const values = [name, item]
-      return pool
+      return db
       .query(`UPDATE items
         SET name =$1
         WHERE items.id = $2
@@ -94,8 +86,8 @@ const addUser =  function(user) {
       exports.editItem = editItem;
 
     //add an endpoint for deleting item
-      const deleteItem = function(item) {
-        return pool
+      const deleteItem = function(item,db) {
+        return db
         .query(`DELETE FROM items
           WHERE items.id = $1
           `, [item])
