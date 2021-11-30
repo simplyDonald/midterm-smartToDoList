@@ -10,18 +10,16 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    let query = `SELECT * FROM widgets`;
-    console.log(query);
-    db.query(query)
-      .then(data => {
-        const widgets = data.rows;
-        res.json({ widgets });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    res.render("index");
   });
-  return router;
+  router.get("/:user_id",(req, res) => {
+    const user_id = req.params.user_id
+    res.render("partials/_userpage");
+  });
+  router.post("/add/:user_id",(req, res) => {
+    // res.send("/");
+  });
+
+return router;
+
 };

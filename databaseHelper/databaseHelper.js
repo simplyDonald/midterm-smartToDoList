@@ -27,7 +27,7 @@ const getUserWithId = function(id,db) {
 }
 exports.getUserWithId = getUserWithId;
 //return all items in a list for given user
-const allItems = function(user,db) {
+const allItemsForUser = function(user,db) {
   const category_id = 101
   const values = [category_id, user]
   return db
@@ -41,7 +41,7 @@ const allItems = function(user,db) {
     console.log(err.message);
   })
 }
-exports.allItems= allItems;
+exports.allItemsForUser= allItemsForUser;
 
 
 
@@ -121,5 +121,6 @@ const addUser =  function(user,db) {
               .json({ error: err.message });
           })
         };
+        exports.deleteItem = deleteItem
 
 
