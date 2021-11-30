@@ -1,0 +1,30 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  top: 0;
+  width: 100%;
+  position: fixed;
+}
+
+#userpage {
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+}
+
+.new-item-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+}
+
+.add-img {
+ max-height: 50px;
+ width: auto;
+}
+
+.toBuy-img {
+  max-height: 30px;
+  width: auto;
+}
