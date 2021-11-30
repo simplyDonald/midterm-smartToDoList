@@ -25,7 +25,7 @@
     <!-- Add New Items Form -->
     <header id="userpage">
       <div class="new-item-field">
-      <form method="POST" actions= "/:user_id">
+      <form method="POST" action= "/add/<%= user_id %>">
         <input id="input-item" class="form-control" type="text" name= "item" placeholder="What task would you like to include?">
         <button id="add-item" type= "submit" class="btn btn-submit"><img src="https://img.icons8.com/carbon-copy/100/000000/add.png"/></button>
       </form>
@@ -33,6 +33,17 @@
     </header>
 
     <!-- Categories Lists Containers -->
+    <div class= "movies">
+      <% for(let item of movies) { %>
+    <ul>
+      <li> <%= item.name %></li>
+    </ul>
+    <% } %>
+    </div>
+
+
+
+
     <!-- Needs Category ids to link item to list-->
     <main class="categories-container">
 
