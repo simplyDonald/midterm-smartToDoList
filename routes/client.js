@@ -13,7 +13,7 @@ module.exports = (db) => {
     res.render("index");
   });
   router.get("/:user_id",(req, res) => {
-
+    const user_id = req.params.user_id
     res.render("partials/_userpage");
   });
   router.post("/add/:user_id",(req, res) => {
