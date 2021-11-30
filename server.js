@@ -7,8 +7,10 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const userRoutes = require('./routes/users');
 const todoRoutes = require("./routes/todo");
+const clientRoutes = require("./routes/client");
 const app = express();
 const morgan = require("morgan");
+const {getUserWithEmail, getUserWithId, addItem, addUser, deleteItem, editItem, allItemsForUser} = require("./databaseHelper/databaseHelper")
 
 
 
@@ -43,6 +45,8 @@ app.use(express.static("public"));
 // /api/endpoints
 app.use("/api/todo", todoRoutes(db));
 app.use('/api/users', userRoutes(db));
+app.use('/', clientRoutes(db))
+
 
 // Note: mount other resources here, using the same pattern above
 
@@ -50,16 +54,15 @@ app.use('/api/users', userRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
-app.get("/login", (req, res) => {
-  res.render("login");
-});
-app.get("/user", (req,res) => {
+// app.get("/", UserRoutes(db));
+
+// app.get("/login", (req, res) => {
+//   res.render("login");
+// });
+// app.get("/user", (req,res) => {
 
 
-});
+// });
 
 
 app.listen(PORT, () => {

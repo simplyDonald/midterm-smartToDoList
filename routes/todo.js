@@ -3,14 +3,22 @@ const router  = express.Router();
 
 module.exports = (db) => {
   //display all items for given user:
-  // router.get("/:user_id", (req,res) => {
-  //   const user= req.sessions.userId
-  //   db.
+  router.get("/items", (req,res) => {
 
+    db.query(`
+  SELECT * FROM items
+  `)
+  .then((res)=>{
 
-  // })
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
+
+  })
+
  //user adds item to todolist
- router.post("/:user_id", (req,res) => {
+ router.post("/add/:user_id", (req,res) => {
   const user= req.sessions.userId
   const item = req.body.name
   db.addItem(item,user)
@@ -24,7 +32,7 @@ module.exports = (db) => {
     .catch((e) => res.send(e));
 })
 //user can edit item in list
-router.post("/:item_id", (req,res) => {
+router.post("/edit/:item_id", (req,res) => {
     const name = req.body.name
     const item = req.params.item_id
     db.editItem(item,name)
