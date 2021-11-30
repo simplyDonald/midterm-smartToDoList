@@ -1,90 +1,51 @@
-
-
 const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.get("/:user_id", (req, res) => {
-    db.query(`SELECT *
-    FROM items
-    JOIN users ON items.user_id = users.id
-    JOIN categories ON items.category_id= categories.id
-    WHERE user_id = ${req.params.user_id}
-    `)
-      .then(data => {
-        const items = data.rows;
-        res.json({ items });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+  //display all items for given user:
+  // router.get("/:user_id", (req,res) => {
+  //   const user= req.sessions.userId
+  //   db.
 
-    })
 
-    router.post("/:user_id", (req, res) => {
-      //add a todo item to database
-      //possibly use req.sessions instead of req.params?
-      //will hardcode category_id now and later replace with function that will get categoryid
-        const category_id = 101
-        const values = [category_id, req.params.user_id, req.body.name]
-        db.query(`INSERT into items (category_id, user_id, name)
-        VALUES ($1, $2, $3)
-        RETURNING *
-      `, values)
-      .then(data => {
-        const items = data.rows;
-        res.json({ items });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+  // })
+ //user adds item to todolist
+ router.post("/:user_id", (req,res) => {
+  const user= req.sessions.userId
+  const item = req.body.name
+  db.addItem(item,user)
+    .then((res) => {
+      if(!item){
+        res.send({error: "no item in body"})
+        return;
+      }
+      res.send(item);
     })
-  //add an endpoint for editing item name
-    router.post("/:id", (req,res) =>{
-      const values = [req.body.name, req.params.id]
-        db.query(`UPDATE items
-        SET name =$1
-        WHERE items.id = $2
-        `)
+    .catch((e) => res.send(e));
+})
+//user can edit item in list
+router.post("/:item_id", (req,res) => {
+    const name = req.body.name
+    const item = req.params.item_id
+    db.editItem(item,name)
+    .then((res) => {
+      if(!item){
+        res.send({error: "no item in body"})
+        return;
+      }
+      res.send(item);
     })
-
-  //add an endpoint for deleting item
-  router.delete("/:id", (req,res) =>{
-  const values = [req.params.id]
-    db.query(`DELETE FROM items
-    WHERE items.id = $1
-    `, values)
-    .then(data => {
-      const items = data.rows;
-      res.json({ items });
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
+    .catch((e) => res.send(e));
+})
+//user can delete item in list
+router.post("/:item_id", (req,res) =>{
+  const item = req.params.item_id
+  db.deleteItem(item)
+  .then((res) =>{
+    return;
   })
+  .catch((e) => res.send(e));
 
-
-
-
-
-      // router.get("/:user_id", (req, res) => {
-      //   db.query(`SELECT * FROM items WHERE user_id = ${req.params.user_id}`)
-      //     .then(data => {
-      //       const users = data.rows;
-      //       res.json({ users });
-      //     })
-      //     .catch(err => {
-      //       res
-      //         .status(500)
-      //         .json({ error: err.message });
-      //     });
-
+})
   return router;
-
 }

@@ -5,8 +5,11 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
+const userRoutes = require('./routes/users');
+const todoRoutes = require("./routes/todo");
 const app = express();
 const morgan = require("morgan");
+
 
 
 // PG database client/connection setup
@@ -36,15 +39,10 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
-const todoRoutes = require("./routes/todo");
-const widgetsRoutes = require("./routes/widgets");
 
-// Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
+// /api/endpoints
 app.use("/api/todo", todoRoutes(db));
+app.use('/api/users', userRoutes(db));
 
 // Note: mount other resources here, using the same pattern above
 
