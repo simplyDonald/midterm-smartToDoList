@@ -14,7 +14,7 @@
   <!-- App CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/userpage.css" type="text/css" />
 
 </head>
   <body>
@@ -48,18 +48,30 @@
     <main class="categories-container">
 
       <!-- To Buy List -->
-      <div class="card-toBuyList">
-        <img src="https://img.icons8.com/external-bearicons-detailed-outline-bearicons/64/000000/external-book-call-to-action-bearicons-detailed-outline-bearicons.png"/>
-        <h5 class="list-name">To Buy</h5>
-        <div class="card-body">
-          <ul id="toBuy-items" class="list-group list-group-flush">
-          </ul>
+      <div class="card-toBuyList" style="border-radius: 15px;">
+        <div class="card-body p-5">
+          <h5 class="list-name">
+            <img class="toBuy-img" src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/000000/external-shopping-basket-supermarket-photo3ideastudio-lineal-photo3ideastudio.png"/>
+            To Buy
+          </h5>
+            <ul id="toBuy-items" class="list-group list-group-flush mb-0">
+              <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
+                <div class="d-flex align-items-center">
+                  <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." />
+                  Shampoo
+                </div>
+                <button id="delete-button" class="btn btn-submit">
+                  <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <!-- To Eat List -->
       <div class="card-toEatList">
-        <img src="https://img.icons8.com/external-icongeek26-outline-gradient-icongeek26/64/000000/external-clapper-cinema-icongeek26-outline-gradient-icongeek26.png"/>
+        <img src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/000000/external-restaurant-food-delivery-photo3ideastudio-lineal-photo3ideastudio.png"/>
         <h5 class="list-name">To Eat</h5>
         <div class="card-body">
           <ul id="toEat-items" class="list-group list-group-flush">
@@ -79,7 +91,7 @@
 
       <!-- To Read List -->
       <div class="card-toReadList">
-        <img src="https://img.icons8.com/external-bearicons-detailed-outline-bearicons/64/000000/external-book-call-to-action-bearicons-detailed-outline-bearicons.png"/>
+        <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-book-man-accessories-kiranshastry-lineal-kiranshastry.png"/>
         <h5 class="list-name">To Read</h5>
         <div class="card-body">
           <ul id="toRead-items" class="list-group list-group-flush">
@@ -88,3 +100,17 @@
       </div>
 
     </main>
+
+    <!-- JQuery Scripts CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap Script CDN-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- App JS-->
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+
+  </body>
+</html>
