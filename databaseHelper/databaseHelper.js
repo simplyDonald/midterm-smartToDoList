@@ -20,59 +20,88 @@ const getUserWithId = function(id,db) {
   SELECT * FROM users
   WHERE id = $1
   `), [id])
-  .then((result) => result.rows[0])
+  .then((result) => {
+    return result.rows[0]})
   .catch((err) => {
     console.log(err.message);
   });
 }
 exports.getUserWithId = getUserWithId;
-//return all items in a list for given user
-const allItemsForUser = function(user,db) {
-  const category_id = 101
-  const values = [category_id, user]
-  return db
-  .query ((`SELECT *
-  FROM items
-  WHERE category_id = $1
-  AND user_id = $2
-  `, values))
-  .then((result) =>result.rows[0])
-  .catch((err) => {
-    console.log(err.message);
-  })
-}
-exports.allItemsForUser= allItemsForUser;
+// //return all items in a list for given user
+// const allItemsForUser = async function(user,db) {
+//   const category_id = 101
+//   const values = [category_id, user]
+//   const userItems = await db
+//   .query ((`SELECT *
+//   FROM items
+//   WHERE category_id = $1
+//   AND user_id = $2
+//   `, values))
+//   return userItems;
+// }
+// exports.userItems= this.userItems;
 
 
+  //function that matches item to category_id:
+  const categorizeItem = function(item,matchKeyWords){
+    let category_id;
+    let firstWord = item.toLowerCase().split(" ");
+    for (let key in matchKeyWords){
+      if (matchKeyWords[key].keyWords.includes(firstWord[0])){
+        category_id = matchKeyWords[key].categoryId
+        break;
+      }
+    }
+    return category_id;
+  }
+  const matchKeyWords= {
+    shopping:{
+      keyWords: ["buy", "get", "purchase"],
+      categoryId: 104
+    },
+    films: {
+      keyWords: ["watch", "see", "Netflix"],
+      categoryId : 101
+    },
+    books: {
+      keyWords: ["read", "study"],
+      categoryId : 103
+    },
+    restaurants:{
+      keyWords: ["eat", "drink", "binge"],
+      categoryId : 102
+    }
+      }
 
 
 
 //add user to database
-const addUser =  function(user,db) {
+const addUser = async function(user,db) {
   const values= [user.email,user.password,user.first_name, user.last_name, user.birth_date]
-  return db
+  const newUser= await db
   .query ((`
     INSERT into users (email, password, first_name, last_name, birth_date)
     VALUES ($1,$2,$3,$4,$5)
     RETURNING *
   `), values)
-  .then((result) => console.log(result.rows))
-      .catch((err) => {
-        console.log(err.message);
-      });
+  return newUser
   };
   exports.addUser = addUser;
 
   //add item to database
-  const addItem = async function({item,user},db) {
+  const addItem = async function(item,user,db) {
   //will hardcode category_id now and later replace with function that will get categoryid
-      const category_id = 101
+      let category_id = categorizeItem(item,matchKeyWords)
+      if(!category_id){
+        category_id = 105
+      }
       const values = [category_id, user, item]
-  const newItem = await db
+      const newItem = await db
     .query (`INSERT into items (category_id, user_id, name)
         VALUES ($1, $2, $3)
         RETURNING *
       `, values)
+
     return newItem
   };
     exports.addItem = addItem;
@@ -84,18 +113,17 @@ const addUser =  function(user,db) {
 
 
 
-    //all items in move category
+    //all items in movie category
     const getDbItems= function(db,category_id){
       return db
       .query(`SELECT name FROM items WHERE category_id = $1`, [category_id])
-      .then ((res) => {
-        return res.rows
-      })
+      .then((result) => {
+        return result.rows})
       .catch((err) => {
         console.log(err.message);
       });
     };
-    exports.allMovies = allMovies;
+    exports.getDbItems = getDbItems;
 
 
 
