@@ -112,15 +112,17 @@ const addUser = async function(user,db) {
 
 
 
-    //all items in movie category
-    const getDbItems= function(db,category_id){
-      return db
+    //all items in given category
+    const getDbItems= async function(db,item){
+      let category_id = categorizeItem(item,matchKeyWords)
+      const allItems= await db
       .query(`SELECT name FROM items WHERE category_id = $1`, [category_id])
       .then((result) => {
         return result.rows})
       .catch((err) => {
         console.log(err.message);
       });
+      return allItems;
     };
     exports.getDbItems = getDbItems;
 
