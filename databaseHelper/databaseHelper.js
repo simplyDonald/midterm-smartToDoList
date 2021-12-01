@@ -64,26 +64,44 @@ const addUser =  function(user,db) {
   exports.addUser = addUser;
 
   //add item to database
-  const addItem = function(item,user,db) {
-      //will hardcode category_id now and later replace with function that will get categoryid
+  const addItem = async function({item,user},db) {
+  //will hardcode category_id now and later replace with function that will get categoryid
       const category_id = 101
       const values = [category_id, user, item]
-    return db
+  const newItem = await db
     .query (`INSERT into items (category_id, user_id, name)
         VALUES ($1, $2, $3)
         RETURNING *
       `, values)
-      .then(data => {
-        const items = data.rows;
-        res.json({ items });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      })
-    };
+    return newItem
+  };
     exports.addItem = addItem;
+
+
+
+
+
+
+
+
+    //all items in move category
+    const getDbItems= function(db,category_id){
+      return db
+      .query(`SELECT name FROM items WHERE category_id = $1`, [category_id])
+      .then ((res) => {
+        return res.rows
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+    };
+    exports.allMovies = allMovies;
+
+
+
+
+
+
 
     //add an endpoint for editing item name
     const editItem = function(item, name,db) {

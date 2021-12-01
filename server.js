@@ -48,6 +48,7 @@ app.use('/api/users', userRoutes(db));
 app.use('/', clientRoutes(db))
 
 
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page
