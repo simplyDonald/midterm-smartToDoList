@@ -18,16 +18,14 @@
 
 </head>
   <body>
-    <header>
     <%- include("./_navbar") %>
-    </header>
 
     <!-- Add New Items Form -->
     <header id="userpage">
-      <div class="new-item-field">
-      <form method="POST" action= "/<%= user_id %>">
-        <input id="input-item" class="form-control" type="text" name= "name" placeholder="What task would you like to include?">
-        <button id="add-item" type= "submit" class="btn btn-submit"><img src="https://img.icons8.com/carbon-copy/100/000000/add.png"/></button>
+      <!-- <div class="new-item-field"> -->
+      <form class="new-item-form" method="POST" action= "/add/<%= user_id %>">
+        <input id="input-item" class="form-control" type="text" name= "item" placeholder="What task would you like to include?">
+        <button id="add-button" class="btn btn-submit"><img src="https://img.icons8.com/carbon-copy/100/000000/add.png"/></button>
       </form>
       </div>
     </header>
@@ -48,54 +46,109 @@
     <main class="categories-container">
 
       <!-- To Buy List -->
-      <div class="card-toBuyList" style="border-radius: 15px;">
-        <div class="card-body p-5">
+      <div class="list-card" style="border-radius: 15px;">
+        <div class="card-body">
           <h5 class="list-name">
-            <img class="toBuy-img" src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/000000/external-shopping-basket-supermarket-photo3ideastudio-lineal-photo3ideastudio.png"/>
+            <img class="toBuy-img" src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/000000/external-shopping-basket-supermarket-photo3ideastudio-lineal-photo3ideastudio.png" style="width:auto;height:30px"/>
             To Buy
           </h5>
             <ul id="toBuy-items" class="list-group list-group-flush mb-0">
               <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
+                <span class="bullet bg-primary"></span>
                 <div class="d-flex align-items-center">
-                  <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." />
-                  Shampoo
+                  <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
+                  buy shampoo
                 </div>
-                <button id="delete-button" class="btn btn-submit">
+                <div class="btn-group btn-group-toggle" data-toggle="button">
+                <button id="list-button" class="btn btn-submit">
+                <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                </button>
+                <button id="list-button" class="btn btn-submit">
                   <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
                 </button>
+                </div>
               </li>
             </ul>
-          </div>
         </div>
       </div>
 
       <!-- To Eat List -->
-      <div class="card-toEatList">
-        <img src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/000000/external-restaurant-food-delivery-photo3ideastudio-lineal-photo3ideastudio.png"/>
-        <h5 class="list-name">To Eat</h5>
+      <div class="list-card" style="border-radius: 15px;">
         <div class="card-body">
-          <ul id="toEat-items" class="list-group list-group-flush">
-          </ul>
+          <h4 class="list-name">
+            <img src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/000000/external-restaurant-food-delivery-photo3ideastudio-lineal-photo3ideastudio.png" style="width:auto;height:30px"/>
+            To Eat
+          </h4>
+            <ul id="toEat-items" class="list-group list-group-flush" class="list-group list-group-flush mb-0">
+              <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
+                <div class="d-flex align-items-center">
+                  <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
+                  Eat ice cream
+                </div>
+                <div class="btn-group btn-group-toggle" data-toggle="button">
+                  <button id="list-button" class="btn btn-submit">
+                  <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                  </button>
+                  <button id="list-button" class="btn btn-submit">
+                    <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                  </button>
+                  </div>
+              </li>
+            </ul>
         </div>
       </div>
 
       <!-- To Watch List -->
-      <div class="card-toWatchList">
-        <img src="https://img.icons8.com/ios/64/000000/cinema-film-play.png"/>
-        <h5 class="list-name">To Watch</h5>
+      <div class="list-card" style="border-radius: 15px;">
         <div class="card-body">
-          <ul id="toWatch-items" class="list-group list-group-flush">
-          </ul>
+          <h4 class="list-name">
+            <img src="https://img.icons8.com/ios/64/000000/cinema-film-play.png" style="width:auto;height:30px"/>
+            To Watch
+          </h4>
+            <ul id="toWatch-items" class="list-group list-group-flush mb-0">
+              <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
+                <div class="d-flex align-items-center">
+                  <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
+                  <span class="bullet bg-primary"></span>
+                  watch avengers: infinity war
+                </div>
+                <div class="btn-group btn-group-toggle" data-toggle="button">
+                  <button id="list-button" class="btn btn-submit">
+                  <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                  </button>
+                  <button id="list-button" class="btn btn-submit">
+                    <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                  </button>
+                  </div>
+              </li>
+            </ul>
         </div>
       </div>
 
       <!-- To Read List -->
-      <div class="card-toReadList">
-        <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-book-man-accessories-kiranshastry-lineal-kiranshastry.png"/>
-        <h5 class="list-name">To Read</h5>
+      <div class="list-card" style="border-radius: 15px;">
         <div class="card-body">
-          <ul id="toRead-items" class="list-group list-group-flush">
-          </ul>
+          <h4 class="list-name">
+            <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-book-man-accessories-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:30px"/>
+            To Read
+          </h4>
+            <ul id="toRead-items" class="list-group list-group-flush m-0">
+              <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
+                <div class="d-flex align-items-center">
+                  <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
+                  <span class="bullet bg-primary"></span>
+                  read coding for dummies
+                </div>
+                <div class="btn-group btn-group-toggle" data-toggle="button">
+                  <button id="list-button" class="btn btn-submit">
+                  <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                  </button>
+                  <button id="list-button" class="btn btn-submit">
+                    <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                  </button>
+                  </div>
+              </li>
+            </ul>
         </div>
       </div>
 
