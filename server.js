@@ -2,13 +2,13 @@
 require("dotenv").config();
 
 // Web server config
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const userRoutes = require('./routes/users');
 const todoRoutes = require("./routes/todo");
 const clientRoutes = require("./routes/client");
-const clientSideJS =  require("./public/scripts/app");
+// const clientSideJS =  require("./public/scripts/app");
 const app = express();
 const morgan = require("morgan");
 const {getUserWithEmail, getUserWithId, addItem, addUser, deleteItem, editItem, allItemsForUser} = require("./databaseHelper/databaseHelper")
