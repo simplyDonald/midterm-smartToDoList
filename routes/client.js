@@ -5,6 +5,7 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
+const { promiseImpl } = require('ejs');
 const express = require('express');
 const { addItem, getDbItems} = require('../databaseHelper/databaseHelper');
 const router  = express.Router();
@@ -16,17 +17,23 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     res.render("index");
   });
+
   router.get("/:user_id",(req, res) => {
-    getDbItems(db,101)
-      .then((movies) => {
-      // console.log("movies",movies)
-        const templateVars = {user_id:1, movies}
+
+    Promise.all([getDbItems(db,101), getDbItems (db,102), getDbItems(db,103), getDbItems(db,104), getDbItems(db,105)])
+      .then((result)=> {
+        const templateVars = {user_id:1, movies:result[0], restaurants:result[1], books: result[2], shopping: result[3], others: result[4]};
         res.render("partials/_userpage", templateVars);
-    });
-  });
+  })
+      .catch(e => e.message);
+
+  })
+
+
   router.post("/:user_id",(req, res) => {
-      const item = req.body.name
+      const item = req.body.item
       const user = 1
+      // console.log("item", item, "req.body", req.body)
       addItem(item,user,db)
       .then((result) => {
         if(!item){
@@ -41,6 +48,7 @@ module.exports = (db) => {
       .catch((e) => res.send(e));
 
   });
+
 
 
 

@@ -1,3 +1,5 @@
+// const { getDbItems } = require("../../databaseHelper/databaseHelper");
+
 const matchKeyWords= {
   shopping:{
     keyWords: ["buy", "get", "purchase"],
@@ -30,34 +32,24 @@ const categorizeItem = function(item,matchKeyWords){
   }
   return category_id;
 }
+const renderListItems = function (item){
+  ('#toBuy-items').empty();
+  ('#toBuy-items').append(getDbItems(db,101));
+}
 
 
-
-
-
-// // $(function () {
-//   $("#add-item").on("click", function(evt){
-//     evt.preventDefault();
-//     categorizeItem($("#input-item"),matchKeyWords);
-//     const category_id = categorizeItem($("#input-item"),matchKeyWords);
-//     $("#add-item")
-//     $("#add-item").val("");
-
-
-
-
-
-
-
-//   })
-
-
-
+// $(document).ready(function () {
+//   // function loadDbItems(){
+//   //  $.ajax({
+//   //    type: "GET",
+//   //    url: "/:user_id",
+//   //    dataType: "json"
+//   //  }).then((res) => {
+//   //     renderListItems(res)
+//   //  })
+//   //  console.log(loadDbItems())
+//   // }
+//   // })
+//   console.log("working!")
 // })
-
-//     function loadListItems(){
-//       $.ajax({
-//         type: "GET",
-//         url: ""
-//       })
-//     }
+// ;

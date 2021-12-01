@@ -92,6 +92,7 @@ const addUser = async function(user,db) {
   const addItem = async function(item,user,db) {
   //will hardcode category_id now and later replace with function that will get categoryid
       let category_id = categorizeItem(item,matchKeyWords)
+      console.log("category_id", category_id)
       if(!category_id){
         category_id = 105
       }
