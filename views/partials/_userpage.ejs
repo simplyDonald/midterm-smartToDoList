@@ -105,12 +105,13 @@
             <img src="https://img.icons8.com/ios/64/000000/cinema-film-play.png" style="width:auto;height:30px"/>
             To Watch
           </h4>
+          <% for(let item of movies) { %>
             <ul id="toWatch-items" class="list-group list-group-flush mb-0">
               <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
                 <div class="d-flex align-items-center">
                   <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
                   <span class="bullet bg-primary"></span>
-                  watch avengers: infinity war
+                  <%= item.name %>
                 </div>
                 <div class="btn-group btn-group-toggle" data-toggle="button">
                   <button id="list-button" class="btn btn-submit">
@@ -120,8 +121,9 @@
                     <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
                   </button>
                   </div>
-              </li>
+                </li>
             </ul>
+            <% } %>
         </div>
       </div>
 
