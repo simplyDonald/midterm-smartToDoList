@@ -108,12 +108,6 @@ const addUser = async function(user,db) {
     exports.addItem = addItem;
 
 
-
-
-
-
-
-
     //all items in movie category
     const getDbItems= function(db,category_id){
       return db
@@ -125,10 +119,6 @@ const addUser = async function(user,db) {
       });
     };
     exports.getDbItems = getDbItems;
-
-
-
-
 
 
 
