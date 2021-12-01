@@ -15,7 +15,6 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/userpage.css" type="text/css" />
-
 </head>
   <body>
     <%- include("./_navbar") %>
@@ -23,7 +22,7 @@
     <!-- Add New Items Form -->
     <header id="userpage">
       <!-- <div class="new-item-field"> -->
-      <form class="new-item-form" method="POST" action= "/add/<%= user_id %>">
+      <form class="new-item-form" method="POST" action= "/<%= user_id %>">
         <input id="input-item" class="form-control" type="text" name= "item" placeholder="What task would you like to include?">
         <button id="add-button" class="btn btn-submit"><img src="https://img.icons8.com/carbon-copy/100/000000/add.png"/></button>
       </form>
@@ -31,13 +30,6 @@
     </header>
 
     <!-- Categories Lists Containers -->
-    <div class= "movies">
-      <% for(let item of movies) { %>
-    <ul>
-      <li> <%= item.name %></li>
-    </ul>
-    <% } %>
-    </div>
 
 
 
@@ -105,12 +97,13 @@
             <img src="https://img.icons8.com/ios/64/000000/cinema-film-play.png" style="width:auto;height:30px"/>
             To Watch
           </h4>
+          <% for(let item of movies) { %>
             <ul id="toWatch-items" class="list-group list-group-flush mb-0">
               <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
                 <div class="d-flex align-items-center">
                   <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
                   <span class="bullet bg-primary"></span>
-                  watch avengers: infinity war
+                  <%= item.name %>
                 </div>
                 <div class="btn-group btn-group-toggle" data-toggle="button">
                   <button id="list-button" class="btn btn-submit">
@@ -120,8 +113,9 @@
                     <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
                   </button>
                   </div>
-              </li>
+                </li>
             </ul>
+            <% } %>
         </div>
       </div>
 
@@ -153,17 +147,15 @@
       </div>
 
     </main>
-
     <!-- JQuery Scripts CDN -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
     <!-- Bootstrap Script CDN-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
     <!-- App JS-->
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+
 
   </body>
 </html>
