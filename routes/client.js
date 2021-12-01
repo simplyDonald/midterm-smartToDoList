@@ -6,15 +6,26 @@
  */
 
 const express = require('express');
-const { addItem,allMovies} = require('../databaseHelper/databaseHelper');
+const { addItem, getDbItems} = require('../databaseHelper/databaseHelper');
 const router  = express.Router();
 
+
+
 module.exports = (db) => {
+
   router.get("/", (req, res) => {
     res.render("index");
   });
-  router.post("/add/:user_id",(req, res) => {
-      const item = req.body.item
+  router.get("/:user_id",(req, res) => {
+    getDbItems(db,101)
+      .then((movies) => {
+      // console.log("movies",movies)
+        const templateVars = {user_id:1, movies}
+        res.render("partials/_userpage", templateVars);
+    });
+  });
+  router.post("/:user_id",(req, res) => {
+      const item = req.body.name
       const user = 1
       addItem(item,user,db)
       .then((result) => {
@@ -22,22 +33,16 @@ module.exports = (db) => {
           res.send({error: "no item in body"})
           return;
         }
-        // console.log(result.rows[0])
+        console.log(result.rows[0])
         // res.send(result.rows[0]);
         res.redirect (`/${user}`)
+
       })
       .catch((e) => res.send(e));
 
   });
-  router.get("/:user_id",(req, res) => {
-      allMovies(db)
-      .then((movies) => {
-      // console.log("movies",movies)
-        const templateVars = {user_id:1, movies}
-        res.render("partials/_userpage", templateVars);
-    });
-  });
-  
+
+
 
 
 

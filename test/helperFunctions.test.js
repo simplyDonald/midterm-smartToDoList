@@ -28,6 +28,7 @@ const categorizeItem = function(item,matchKeyWords){
     if (matchKeyWords[key].keyWords.includes(firstWord[0])){
       console.log("matched", matchKeyWords[key].keyWords)
       category_id = matchKeyWords[key].categoryId
+      console.log(category_id)
       break;
     }
   }
