@@ -17,8 +17,7 @@ module.exports = (db) => {
     res.render("index");
   });
   router.get("/:user_id",(req, res) => {
-    let item = req.body.name
-    getDbItems(db,item)
+    getDbItems(db,101)
       .then((movies) => {
       // console.log("movies",movies)
         const templateVars = {user_id:1, movies}
