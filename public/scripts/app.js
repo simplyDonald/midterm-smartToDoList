@@ -38,7 +38,7 @@ const renderListItems = function (item){
 }
 
 
-// $(function () {
+// $(document).ready(function () {
 //   // function loadDbItems(){
 //   //  $.ajax({
 //   //    type: "GET",
