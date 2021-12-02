@@ -1,3 +1,4 @@
+const {apiMatchItem} = require('../routes/api.js')
 
 //Get a single user from the database given their email.
 const getUserWithEmail = function(email,db) {
@@ -96,14 +97,14 @@ const addUser = async function(user,db) {
       if(!category_id){
         category_id = 105
       }
-      const values = [category_id, user, item]
+      const url= await apiMatchItem(item, categorizeItem(item,matchKeyWords))
+      const values = [category_id, user, item,url]
       const newItem = await db
-    .query (`INSERT into items (category_id, user_id, name)
-        VALUES ($1, $2, $3)
+    .query (`INSERT into items (category_id, user_id, name,url)
+        VALUES ($1, $2, $3, $4)
         RETURNING *
       `, values)
-
-    return newItem
+    return newItem.rows[0]
   };
     exports.addItem = addItem;
 

@@ -7,7 +7,7 @@
 
 const { promiseImpl } = require('ejs');
 const express = require('express');
-const { addItem, getDbItems, deleteItem,getUserWithId} = require('../databaseHelper/databaseHelper');
+const { addItem, getDbItems, deleteItem,getUserWithId,editItem} = require('../databaseHelper/databaseHelper');
 const router  = express.Router();
 
 
@@ -41,7 +41,6 @@ module.exports = (db) => {
           return;
         }
         console.log(result.rows[0])
-        // res.send(result.rows[0]);
         res.redirect (`/${user}`)
 
       })
@@ -49,6 +48,23 @@ module.exports = (db) => {
 
   });
 
+//user can edit item in list
+router.post("/edit/:item_id", (req,res) => {
+  const name = req.body.name;
+  // console.log({name})
+  const item = req.params.item_id
+  // console.log("id", req.params.item_id)
+ editItem(item,name,db)
+  .then((response) => {
+    if(!item){
+      res.send({error: "no item in body"})
+      return;
+    }
+  const user = 1
+   res.redirect(`/${user}`);
+  })
+  .catch((e) => res.send(e));
+})
 
   // router.post("/api/todo/delete/:item_id", (req,res) =>{
   //   const item = req.params.item_id

@@ -99,10 +99,12 @@ $(document).ready(function () {
       inputForm.show();
       const oldItem =$(this).closest(".list-group-item").find('.item-text')
       oldItem.hide();
-
-      $(this).siblings('.save-button').show();
+      $(this).siblings().find('.save-button').show();
     });
-
+    $('.card-body').on('click', '.save-button', function (evt){
+      console.log("clicked save button!")
+      $(this).closest('form').submit()
+    });
     //     // const ul = li.parentNode
     //     // const id= $("#delete-button");
     //     // if(button.id === id){
