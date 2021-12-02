@@ -1,41 +1,42 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #343a40;
-  color: white;
-  top: 0;
-  width: 100%;
-  padding: 10px;
-  position: fixed;
-  z-index: 1;
-}
-
-#login-msg {
-  font-size: 20px;
-}
-
-.navbar-brand {
-  display: flex;
-  align-items: center;
-  font-size: 24px;
-}
-
+/***** Login(Home) Page Body *****/
 body {
-  /*display: flex;*/
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  .row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 200px;
 
-  background: rgb(163, 208, 219);
-  background: linear-gradient(
-    227deg,
-    rgba(163, 208, 219, 1) 0%,
-    rgba(163, 176, 219, 1) 20%,
-    rgba(163, 173, 219, 1) 34%,
-    rgba(163, 219, 208, 1) 59%,
-    rgba(163, 208, 219, 1) 74%,
-    rgba(163, 208, 219, 1) 100%
-  );
+    .login-form {
+      width: 400px;
+      padding: 20px 50px;
 
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+
+        label {
+          font-size: 20px;
+        }
+      }
+
+    }
+
+    .form-header {
+      text-align: center;
+      font-size: 24px;
+    }
+
+    #tagline {
+      align-self: center;
+      font-size: 30px;
+      color: #32319b;
+      -webkit-text-color: 1px;
+    }
+  }
+
+  .form-group.row {
+    padding-top: 10px;
+  }
 }
