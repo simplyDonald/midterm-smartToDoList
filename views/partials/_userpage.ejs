@@ -40,10 +40,14 @@
                 </div>
                   <form data-id="<%= user.id%>" >
                       <div class="form-row">
-                          <div class="form-group col-sm-4">
-                                  <label class="sr-only" for="first-name">First Name</label>
-                                  <input type="text" class="form-control form-control-sm mr-1" id="first-name" placeholder=<%= user.first_name %> >
-                          </div>
+                        <div class="form-group col-sm-4">
+                                <label class="sr-only" for="first-name">First Name</label>
+                                <input type="text" class="form-control form-control-sm mr-1" id="first-name" placeholder=<%= user.first_name %> >
+                        </div>
+                      </div>
+                      <div class="form-row">
+
+                      </div>
                           <div class="form-group col-sm-4">
                             <label class="sr-only" for="last-name">Last Name</label>
                             <input type="text" class="form-control form-control-sm mr-1" id="last-name" placeholder=<%= user.last_name %>>
@@ -63,7 +67,7 @@
                                 </label>
                             </div>
                           </div>
-                      </div>
+
                       <div class="form-row">
                           <button type="button" class="btn btn-secondary btn-sm ml-auto" data-dismiss="modal">Cancel</button>
                           <button type="submit" class="btn btn-primary btn-sm ml-1">Save</button>
@@ -91,132 +95,136 @@
 
     <!-- Needs Category ids to link item to list-->
     <main class="categories-container">
+      <div class="container">
+        <div class="row">
+          <!-- To Buy List -->
+          <div class="list-card" style="border-radius: 15px;">
+            <div class="card-body">
+              <h5 class="list-name">
+                <img class="toBuy-img" src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/000000/external-shopping-basket-supermarket-photo3ideastudio-lineal-photo3ideastudio.png" style="width:auto;height:30px"/>
+                To Buy
+              </h5>
+              <% for(let item of shopping) { %>
+                <ul id="toBuy-items" class="list-group list-group-flush mb-0">
+                  <li data-id="<%= item.id %>" class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
+                    <div class="d-flex align-items-center">
+                      <input class="form-input-shopping" type="input" style="display:none"/>
 
-      <!-- To Buy List -->
-      <div class="list-card" style="border-radius: 15px;">
-        <div class="card-body">
-          <h5 class="list-name">
-            <img class="toBuy-img" src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/000000/external-shopping-basket-supermarket-photo3ideastudio-lineal-photo3ideastudio.png" style="width:auto;height:30px"/>
-            To Buy
-          </h5>
-          <% for(let item of shopping) { %>
-            <ul id="toBuy-items" class="list-group list-group-flush mb-0">
-              <li data-id="<%= item.id %>" class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                <div class="d-flex align-items-center">
-                  <input class="form-input-shopping" type="input" style="display:none"/>
+                      <span class= "item-text"><%= item.name %> </span>
+                    </div>
+                    <div class="btn-group btn-group-toggle" data-toggle="button">
 
-                  <span class= "item-text"><%= item.name %> </span>
-                </div>
-                <div class="btn-group btn-group-toggle" data-toggle="button">
+                      <form method="POST" action="/api/todo/delete/<%=item.id%>">
+                          <button class="btn btn-submit save-button" style="display:none">
+                              <img src="https://img.icons8.com/emoji/48/000000/check-mark-emoji.png"/>
+                          </button>
 
-                  <form method="POST" action="/api/todo/delete/<%=item.id%>">
-                      <button class="btn btn-submit save-button" style="display:none">
-                          <img src="https://img.icons8.com/emoji/48/000000/check-mark-emoji.png"/>
+
+                          <button class="btn btn-submit edit-button">
+                          <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                          </button>
+
+                      <form method="POST" action="/api/todo/delete/<%=item.id%>">
+                      <button type= "submit" id="delete-button" class="btn btn-submit">
+                        <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
                       </button>
+                      </form>
 
+                    </div>
+                  </li>
+                </ul>
+                <% } %>
+            </div>
+          </div>
 
-                      <button class="btn btn-submit edit-button">
+          <!-- To Eat List -->
+          <div class="list-card" style="border-radius: 15px;">
+            <div class="card-body">
+              <h4 class="list-name">
+                <img src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/000000/external-restaurant-food-delivery-photo3ideastudio-lineal-photo3ideastudio.png" style="width:auto;height:30px"/>
+                To Eat
+              </h4>
+              <% for(let item of restaurants) { %>
+                <ul id="toEat-items" class="list-group list-group-flush" class="list-group list-group-flush mb-0">
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
+                    <div class="d-flex align-items-center">
+                      <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
+                      <%= item.name %>
+                    </div>
+                    <div class="btn-group btn-group-toggle" data-toggle="button">
+                      <button id="edit-button" class="btn btn-submit">
                       <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
                       </button>
+                      <button id="delete-button" class="btn btn-submit">
+                        <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                      </button>
+                      </div>
+                  </li>
+                </ul>
+                <% } %>
+            </div>
+          </div>
 
-                  <form method="POST" action="/api/todo/delete/<%=item.id%>">
-                  <button type= "submit" id="delete-button" class="btn btn-submit">
-                    <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-                  </button>
-                  </form>
+          <!-- To Watch List -->
+          <div class="list-card" style="border-radius: 15px;">
+            <div class="card-body">
+              <h4 class="list-name">
+                <img src="https://img.icons8.com/ios/64/000000/cinema-film-play.png" style="width:auto;height:30px"/>
+                To Watch
+              </h4>
+              <% for(let item of movies) { %>
+                <ul id="toWatch-items" class="list-group list-group-flush mb-0">
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
+                    <div class="d-flex align-items-center">
+                      <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
+                      <span class="bullet bg-primary"></span>
+                      <%= item.name %>
+                    </div>
+                    <div class="btn-group btn-group-toggle" data-toggle="button">
+                      <button id="edit-button" class="btn btn-submit">
+                      <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                      </button>
+                      <button id="delete-button" class="btn btn-submit">
+                        <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                      </button>
+                      </div>
+                    </li>
+                </ul>
+                <% } %>
+            </div>
+          </div>
 
-                </div>
-              </li>
-            </ul>
-            <% } %>
+          <!-- To Read List -->
+          <div class="list-card" style="border-radius: 15px;">
+            <div class="card-body">
+              <h4 class="list-name">
+                <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-book-man-accessories-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:30px"/>
+                To Read
+              </h4>
+              <% for(let item of books) { %>
+                <ul id="toRead-items" class="list-group list-group-flush m-0">
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
+                    <div class="d-flex align-items-center">
+                      <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
+                      <span class="bullet bg-primary"></span>
+                      <%= item.name %>
+                    </div>
+                    <div class="btn-group btn-group-toggle" data-toggle="button">
+                      <button id="edit-button" class="btn btn-submit">
+                      <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                      </button>
+                      <button id="delete-button" class="btn btn-submit">
+                        <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                      </button>
+                      </div>
+                  </li>
+                </ul>
+                <% } %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- To Eat List -->
-      <div class="list-card" style="border-radius: 15px;">
-        <div class="card-body">
-          <h4 class="list-name">
-            <img src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/000000/external-restaurant-food-delivery-photo3ideastudio-lineal-photo3ideastudio.png" style="width:auto;height:30px"/>
-            To Eat
-          </h4>
-          <% for(let item of restaurants) { %>
-            <ul id="toEat-items" class="list-group list-group-flush" class="list-group list-group-flush mb-0">
-              <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                <div class="d-flex align-items-center">
-                  <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
-                  <%= item.name %>
-                </div>
-                <div class="btn-group btn-group-toggle" data-toggle="button">
-                  <button id="edit-button" class="btn btn-submit">
-                  <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-                  </button>
-                  <button id="delete-button" class="btn btn-submit">
-                    <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-                  </button>
-                  </div>
-              </li>
-            </ul>
-            <% } %>
-        </div>
-      </div>
-
-      <!-- To Watch List -->
-      <div class="list-card" style="border-radius: 15px;">
-        <div class="card-body">
-          <h4 class="list-name">
-            <img src="https://img.icons8.com/ios/64/000000/cinema-film-play.png" style="width:auto;height:30px"/>
-            To Watch
-          </h4>
-          <% for(let item of movies) { %>
-            <ul id="toWatch-items" class="list-group list-group-flush mb-0">
-              <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                <div class="d-flex align-items-center">
-                  <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
-                  <span class="bullet bg-primary"></span>
-                  <%= item.name %>
-                </div>
-                <div class="btn-group btn-group-toggle" data-toggle="button">
-                  <button id="edit-button" class="btn btn-submit">
-                  <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-                  </button>
-                  <button id="delete-button" class="btn btn-submit">
-                    <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-                  </button>
-                  </div>
-                </li>
-            </ul>
-            <% } %>
-        </div>
-      </div>
-
-      <!-- To Read List -->
-      <div class="list-card" style="border-radius: 15px;">
-        <div class="card-body">
-          <h4 class="list-name">
-            <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-book-man-accessories-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:30px"/>
-            To Read
-          </h4>
-          <% for(let item of books) { %>
-            <ul id="toRead-items" class="list-group list-group-flush m-0">
-              <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                <div class="d-flex align-items-center">
-                  <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
-                  <span class="bullet bg-primary"></span>
-                  <%= item.name %>
-                </div>
-                <div class="btn-group btn-group-toggle" data-toggle="button">
-                  <button id="edit-button" class="btn btn-submit">
-                  <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-                  </button>
-                  <button id="delete-button" class="btn btn-submit">
-                    <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-                  </button>
-                  </div>
-              </li>
-            </ul>
-            <% } %>
-        </div>
-      </div>
 
     </main>
     <!-- JQuery Scripts CDN -->
