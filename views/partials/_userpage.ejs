@@ -11,6 +11,9 @@
   <!-- Bootstrap CSS CDN -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
+  <!-- moment cdn -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <!-- App CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -25,11 +28,16 @@
           <!-- Modal content 1-->
           <div class="modal-content">
               <div class="modal-header">
-                  <span class="user-logo"><%= user.first_name[0] + user.last_name[0] %> </span>
                   <h4 class="modal-title">Edit Profile </h4>
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
               <div class="modal-body">
+                <div>
+                  <span class="user-logo"><%= user.first_name[0] + user.last_name[0] %> </span>
+                  <form action="">
+                    <button class="btn btn-outline-light btn-sm" type="submit">Logout</button>
+                  </form>
+                </div>
                   <form data-id="<%= user.id%>" >
                       <div class="form-row">
                           <div class="form-group col-sm-4">

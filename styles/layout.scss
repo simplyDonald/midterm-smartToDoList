@@ -1,6 +1,7 @@
 // See: https://sass-lang.com/
 
 body {
+
   .row {
     display: flex;
     justify-content: space-around;
@@ -18,5 +19,7 @@ body {
 
 html {
   margin: 0;
-  font-family: 'Roboto', sans-serif; ;
+  font-family: 'Roboto', sans-serif;
+
+
 }

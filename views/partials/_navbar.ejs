@@ -8,10 +8,9 @@
     </button>
 
     <!-- when user is logged in-->
-    <form action="/logout" method="POST">
-      <label for="user" style="margin: 1em" class="font-sizefont-weight-bold"><h3>Hello <%= user.first_name %> ></h3></label>
-      <button class="btn btn-outline-light btn-sm" type="button" data-toggle="modal" data-target="#profile-modal">Edit</button>
-      <button class="btn btn-outline-light btn-sm" type="submit">Logout</button>
-    </form>
+    <div class="greeting-container">
+      <label for="user" style="margin: 1em" class="font-sizefont-weight-bold"><h3>Hello <%= user.first_name %></h3></label>
+      <button class="btn btn-outline-light btn-sm" type="button" data-toggle="modal" data-target="#profile-modal">Edit Profile</button>
+    </div>
   </nav>
 </header>

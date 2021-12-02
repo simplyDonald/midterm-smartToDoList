@@ -4,6 +4,24 @@
   top: 0;
   width: 100%;
   position: fixed;
+
+  .user-logo {
+    height: 30px;
+    width: 30px;
+    background-color:#9370db;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    // border-radius: 50%;
+    // display: inline-block;
+    // text-align: center;
+    // line-height: 15px;
+    // font-size: 50px;
+  }
+  .user-logo:hover {
+    cursor: pointer;
+  }
 }
 
 #userpage {
