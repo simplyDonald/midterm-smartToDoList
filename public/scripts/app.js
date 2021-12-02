@@ -45,14 +45,49 @@
 //   alert("jQuery not loaded")
 // }
 // }
+function addEditedItem(){
+const $newItem =
+`<input class="form-input d-none" type="input" />`
+$('.item-text').append($newItem)
+}
+
+
 
 $(document).ready(function () {
+  //save button .on click
+  //data-id attribute
+   function editedItem(){$.ajax({
+     type: "POST",
+     url: "/:user_id",
+     dataType: "json"
+   }).then((res)=> {
+
+   })
+  }
+  $('.edit-button').on('click', function (evt){
+    evt.preventDefault();
+    $(this).addClass("d-none");
+    // .$(".save-button").switchClass("d-none","d-block")
+    // $()
+    // $(this).attr("disabled", "disabled");
+    const btn= $(this)
+    console.log("this---",this, "previous", btn.parent().prev() )
+    const targetingItem = btn.parent().prev();
+    const btn2 = btn.parent();
+    const saveBtn = btn2.children(".save-button");
+    saveBtn.addClass('d-block').removeClass('d-none');
+    console.log(`save butoon------->`,saveBtn);
+
+    const textElement = targetingItem.children(".item-text");
+    const formInput = targetingItem.children(".form-input");
+    formInput.addClass('d-block').removeClass('d-none');
+    console.log(textElement);
+    textElement.addClass("d-none");
+  })
+  $('.save-button').on('click', function (evt){
+    $(".form-input")
 
 
-
-
-
-  
 });
 
 
