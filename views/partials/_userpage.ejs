@@ -46,25 +46,30 @@
           </h5>
           <% for(let item of shopping) { %>
             <ul id="toBuy-items" class="list-group list-group-flush mb-0">
-              <li id="<%= item.id %>" class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                <span class="bullet bg-primary"></span>
+              <li data-id="<%= item.id %>" class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
                 <div class="d-flex align-items-center">
-                  <input class="form-input d-none" type="input" />
-                  <span class= "item-text" data-id="<%= item.id %>"><%= item.name %> </span>
+                  <input class="form-input-shopping" type="input" style="display:none"/>
+
+                  <span class= "item-text"><%= item.name %> </span>
                 </div>
                 <div class="btn-group btn-group-toggle" data-toggle="button">
+                  
+                  <form method="POST" action="/api/todo/delete/<%=item.id%>">
+                      <button class="btn btn-submit save-button" style="display:none">
+                          <img src="https://img.icons8.com/emoji/48/000000/check-mark-emoji.png"/>
+                      </button>
 
-                  <button class="btn btn-submit save-button d-none">
-                    <img src="https://img.icons8.com/emoji/48/000000/check-mark-emoji.png"/>
-                  </button>
 
+                      <button class="btn btn-submit edit-button">
+                      <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                      </button>
 
-                  <button class="btn btn-submit edit-button">
-                  <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-                  </button>
-                  <button id="delete-button" class="btn btn-submit">
+                  <form method="POST" action="/api/todo/delete/<%=item.id%>">
+                  <button type= "submit" id="delete-button" class="btn btn-submit">
                     <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
                   </button>
+                  </form>
+
                 </div>
               </li>
             </ul>

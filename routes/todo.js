@@ -17,6 +17,19 @@ module.exports = (db) => {
 
   })
 
+//user can delete item in list
+router.post("/delete/:item_id", (req,res) =>{
+  const item = req.params.item_id
+  const user = 1
+   console.log("we are here!")
+  databaseHelper.deleteItem(item,db)
+  .then((result) =>{
+    return res.redirect(`/${user}`);
+  })
+  .catch((e) => res.send(e));
+
+})
+
  //user adds item to todolist
  router.post("/:user_id", (req,res) => {
   const user= 1
@@ -44,19 +57,10 @@ router.post("/edit/:item_id", (req,res) => {
         res.send({error: "no item in body"})
         return;
       }
-      res.send(item);
+      res.send(res);
     })
     .catch((e) => res.send(e));
 })
-//user can delete item in list
-router.post("/:item_id", (req,res) =>{
-  const item = req.params.item_id
-  db.deleteItem(item)
-  .then((res) =>{
-    return;
-  })
-  .catch((e) => res.send(e));
 
-})
   return router;
 }
