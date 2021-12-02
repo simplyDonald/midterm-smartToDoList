@@ -122,6 +122,7 @@ $(document).ready(function () {
 
 //     // })
 // });
+    //function to update time and date;
     setInterval(() => {
       loadTime();
     }, 1000);

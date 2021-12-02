@@ -15,7 +15,12 @@ const router  = express.Router();
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    res.render("index");
+    Promise.all([getDbItems(db,101), getDbItems (db,102), getDbItems(db,103), getDbItems(db,104), getDbItems(db,105),getUserWithId(1,db)])
+      .then((result)=> {
+        const templateVars = {user_id:1, movies:result[0], restaurants:result[1], books: result[2], shopping: result[3], others: result[4], user: result[5]};
+        res.render("index", templateVars);
+  })
+
   });
 
   router.get("/:user_id",(req, res) => {
