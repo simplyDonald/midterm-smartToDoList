@@ -24,7 +24,7 @@
       <!-- <div class="new-item-field"> -->
       <form class="new-item-form" method="POST" action= "/<%= user_id %>">
         <input id="input-item" class="form-control" type="text" name= "item" placeholder="What task would you like to include?">
-        <button id="add-button" class="btn btn-submit"><img src="https://img.icons8.com/carbon-copy/100/000000/add.png"/></button>
+        <button id="add-button" class="btn btn-submit"><img src="https://img.icons8.com/carbon-copy/100/000000/add.png" style="width:auto;height:40px"/></button>
       </form>
       </div>
     </header>
@@ -47,7 +47,6 @@
           <% for(let item of shopping) { %>
             <ul id="toBuy-items" class="list-group list-group-flush mb-0">
               <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                <span class="bullet bg-primary"></span>
                 <div class="d-flex align-items-center">
                   <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
                   <%= item.name %>
@@ -159,7 +158,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- App JS-->
-    <!-- <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script> -->
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 

@@ -1,3 +1,26 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #343a40;
+  color: white;
+  top: 0;
+  width: 100%;
+  padding: 10px;
+  position: fixed;
+  z-index: 1;
+}
+
+#login-msg {
+  font-size: 20px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+}
+
 body {
   /*display: flex;*/
   justify-content: center;
@@ -14,5 +37,5 @@ body {
     rgba(163, 208, 219, 1) 74%,
     rgba(163, 208, 219, 1) 100%
   );
-  
+
 }
