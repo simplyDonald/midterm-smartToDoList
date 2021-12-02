@@ -20,7 +20,7 @@
     <%- include("./_navbar") %>
 
     <!-- profile page modal -->
-    <div id="loginModal" class="modal fade" role="dialog">
+    <div id="profile-modal" class="modal fade" role="dialog">
       <div class="modal-dialog modal-lg" role="content">
           <!-- Modal content 1-->
           <div class="modal-content">
@@ -100,7 +100,7 @@
                   <span class= "item-text"><%= item.name %> </span>
                 </div>
                 <div class="btn-group btn-group-toggle" data-toggle="button">
-                  
+
                   <form method="POST" action="/api/todo/delete/<%=item.id%>">
                       <button class="btn btn-submit save-button" style="display:none">
                           <img src="https://img.icons8.com/emoji/48/000000/check-mark-emoji.png"/>
