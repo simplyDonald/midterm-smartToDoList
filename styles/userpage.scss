@@ -23,7 +23,15 @@
     cursor: pointer;
   }
 }
-
+.modal-header {
+  background-color: #363457;
+  .modal-title {
+    color: aliceblue;
+  }
+  .close {
+    color: aliceblue;
+  }
+}
 #userpage {
   display: flex;
   justify-content: center;
