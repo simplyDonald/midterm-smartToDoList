@@ -1,5 +1,4 @@
 /***** User Page Body *****/
-
 #userpage {
   display: flex;
   justify-content: center;
@@ -45,25 +44,57 @@
 }
 
 button {
-  padding: 0!important;
+  padding: 0 !important;
 }
-
 
 @media only screen and (min-width: 575px) {
   #userpage {
-  margin-top: 150px;
-}
+    margin-top: 150px;
+  }
 
   .new-item-form {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 400px;
-}
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+  }
 
-.list-card {
-  width: 400px;
-  height: auto;
+  .list-card {
+    width: 400px;
+    height: auto;
+  }
 }
+@media only screen and (min-width: 1450px) {
+  .new-item-form {
+    width: 500px;
+  }
 
+  .categories-container {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    align-items: baseline;
+    padding: 10px;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    border-style: double;
+    padding: 10px;
+    margin-top: 20px;
+  }
+
+  .list-card {
+    width: 300px;
+    height: auto;
+  }
+
+  .list-name {
+    font-size: 24px;
+  }
+
+  .d-flex {
+    font-size: 16px;
+  }
 }
