@@ -1,3 +1,4 @@
+const {apiMatchItem} = require('../routes/api.js')
 
 //Get a single user from the database given their email.
 const getUserWithEmail = function(email,db) {
@@ -27,20 +28,19 @@ const getUserWithId = function(id,db) {
   });
 }
 exports.getUserWithId = getUserWithId;
-// //return all items in a list for given user
-// const allItemsForUser = async function(user,db) {
-//   const category_id = 101
-//   const values = [category_id, user]
-//   const userItems = await db
-//   .query ((`SELECT *
-//   FROM items
-//   WHERE category_id = $1
-//   AND user_id = $2
-//   `, values))
-//   return userItems;
-// }
-// exports.userItems= this.userItems;
-
+//return all items in a list for given user
+const allItemsForUser = async function(user,db) {
+  const category_id = 101
+  const values = [category_id, user]
+  const userItems = await db
+  .query ((`SELECT *
+  FROM items
+  WHERE category_id = $1
+  AND user_id = $2
+  `, values))
+  return userItems;
+}
+exports.allItemsForUser= allItemsForUser;
 
   //function that matches item to category_id:
   const categorizeItem = function(item,matchKeyWords){
@@ -96,14 +96,14 @@ const addUser = async function(user,db) {
       if(!category_id){
         category_id = 105
       }
-      const values = [category_id, user, item]
+      const url= await apiMatchItem(item, categorizeItem(item,matchKeyWords))
+      const values = [category_id, user, item,url]
       const newItem = await db
-    .query (`INSERT into items (category_id, user_id, name)
-        VALUES ($1, $2, $3)
+    .query (`INSERT into items (category_id, user_id, name,url)
+        VALUES ($1, $2, $3, $4)
         RETURNING *
       `, values)
-
-    return newItem
+    return newItem.rows[0]
   };
     exports.addItem = addItem;
 
@@ -157,4 +157,21 @@ const addUser = async function(user,db) {
         };
         exports.deleteItem = deleteItem
 
-
+//add an endpoint for editing user profile
+ const editProfile = function(name,db) {
+    const values = [name,1]
+    return db
+    .query(`UPDATE users
+      SET name=$1
+      WHERE users.id = $2
+      RETURNING *;
+      `, values)
+      .then((result) => {
+        console.log("result-----", result)
+        return result
+      })
+      .catch((err) => {
+        console.log(err.message);
+      })
+    }
+    exports.editProfile = editProfile;

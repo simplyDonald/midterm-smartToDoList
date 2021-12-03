@@ -8,7 +8,7 @@
 const express = require('express');
 const router  = express.Router();
 const bcrypt = require("bcrypt");
-
+const { editProfile} = require('../databaseHelper/databaseHelper');
 
 module.exports = function (db) {
   //create a new user
@@ -69,6 +69,9 @@ module.exports = function (db) {
       })
       .catch((e) => res.send(e));
   });
+
+
+
 
    //log user out
    router.post("/logout", (req, res) => {
