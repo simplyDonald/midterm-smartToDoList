@@ -40,9 +40,7 @@ module.exports = (db) => {
           res.send({error: "no item in body"})
           return;
         }
-        console.log(result.rows[0])
-        res.redirect (`/${user}`)
-
+        res.redirect(`/${user}`)
       })
       .catch((e) => res.send(e));
 

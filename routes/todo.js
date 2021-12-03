@@ -31,19 +31,19 @@ router.post("/delete/:item_id", (req,res) =>{
 })
 
  //user adds item to todolist
- router.post("/:user_id", (req,res) => {
-  const user= 1
-  const item = req.body.name
-  databaseHelper.addItem(item,user,db)
-    .then((newItem) => {
-      if(!newItem){
-        res.send({error: "no item in body"})
-        return;
-      }
-      res.send(newItem);
-    })
-    .catch((e) => res.send(e));
-})
+//  router.post("/:user_id", (req,res) => {
+//   const user= 1
+//   const item = req.body.name
+//   databaseHelper.addItem(item,user,db)
+//     .then((newItem) => {
+//       if(!newItem){
+//         res.send({error: "no item in body"})
+//         return;
+//       }
+//       res.send(newItem);
+//     })
+//     .catch((e) => res.send(e));
+// })
 
   return router;
 }

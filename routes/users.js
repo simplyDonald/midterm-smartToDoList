@@ -70,6 +70,11 @@ module.exports = function (db) {
       .catch((e) => res.send(e));
   });
 
+  //edit user profile
+
+
+
+
    //log user out
    router.post("/logout", (req, res) => {
     req.session.userId = null;
