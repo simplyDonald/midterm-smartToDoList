@@ -70,13 +70,6 @@ module.exports = function (db) {
       .catch((e) => res.send(e));
   });
 
-  //edit user profile
-  router.post("/edit/profile"), (req, res) => {
-      const email= req.body.email;
-      return db.editProfile(email)
-      .then((response)=> res.redirect("/1"))
-      .catch((e) => res.send(e));
-  }
 
 
 
