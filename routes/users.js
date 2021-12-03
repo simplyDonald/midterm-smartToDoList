@@ -8,7 +8,7 @@
 const express = require('express');
 const router  = express.Router();
 const bcrypt = require("bcrypt");
-
+const { editProfile} = require('../databaseHelper/databaseHelper');
 
 module.exports = function (db) {
   //create a new user
@@ -71,7 +71,12 @@ module.exports = function (db) {
   });
 
   //edit user profile
-
+  router.post("/edit/profile"), (req, res) => {
+      const email= req.body.email;
+      return db.editProfile(email)
+      .then((response)=> res.redirect("/1"))
+      .catch((e) => res.send(e));
+  }
 
 
 

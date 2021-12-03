@@ -64,24 +64,6 @@ router.post("/edit/:item_id", (req,res) => {
   .catch((e) => res.send(e));
 })
 
-  // router.post("/api/todo/delete/:item_id", (req,res) =>{
-  //   const item = req.params.item_id
-  //   const user = 1
-  //    console.log("we are here!")
-  //   deleteItem(item,db)
-  //   .then((res) =>{
-  //     console.log(res.rows)
-  //     return res.redirect(`/${user}`);
-  //   })
-  //   .catch((e) => res.send(e));
-
-  // })
-
-
-
-
-
-
 
 
 return router;
