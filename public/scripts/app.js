@@ -36,4 +36,37 @@ $(document).ready(function () {
       $(this).closest('form').submit()
     });
 
-});
+
+
+  // $('.item-text').draggable({
+  //     cursor: 'move',
+  //     helper: "clone"
+  // });
+
+  // $(".card-body").droppable({
+  //   drop: function(event, ui) {
+  //     var itemid = $(event.originalEvent.toElement).attr(".item-text");
+  //     $('.item-text').each(function() {
+  //       if ($(this).attr(".item-text") === itemid) {
+  //         $(this).appendTo(".card-body");
+  //       }
+  //     });
+  //   }
+  // });
+
+  // $("#container2").droppable({
+  //   drop: function(event, ui) {
+  //     var itemid = $(event.originalEvent.toElement).attr("itemid");
+  //     $('.box-item').each(function() {
+  //       if ($(this).attr("itemid") === itemid) {
+  //         $(this).appendTo("#container2");
+  //       }
+  //     });
+    // }
+  });
+
+
+
+
+
+

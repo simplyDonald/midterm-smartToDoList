@@ -24,14 +24,14 @@ const apiMatchItem = async function(itemName, categoryId){
 
     var options = {
       method: 'GET',
-      url:`https://api.themoviedb.org/3/search/movie?api_key=461cc9cce5f14a006c2025e4317cb185&query=${itemNameWithoutKeyWords}`
+      url:`https://api.tvmaze.com/search/shows?q==${itemNameWithoutKeyWords}`
   // headers: {
   //   'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com',
   //   'x-rapidapi-key': '461cc9cce5f14a006c2025e4317cb185'
     }
     const result = await axios.request(options)
-    console.log(result.data,"result")
-    return result
+   const url= result.data[0].show.url
+    return url
   };
 
   if(categoryId === bookCategoryId){
@@ -66,16 +66,17 @@ const apiMatchItem = async function(itemName, categoryId){
   if(categoryId === shoppingCategoryId){
     var options = {
       method: 'GET',
-      url: `https://www.amazon.com/s/?field-keywords=${itemNameWithoutKeyWords}`,
+      url: "https://www.amazon.com/s/?field-keywords=Harry+Potter",
+      "Keywords": "harry potter",
       headers: {
         'key': 'SeClR2tlYT3lP8zIxVPhM3osO539z1K96OvgIZpG'
       }
     };
 
    const result = await axios.request(options)
-   console.log(result.data, "result")
+   console.log((result.data), "result")
    return result
 }
 }
-// apiMatchItem("Buy eggs", 104);
+apiMatchItem("socks", 104);
 exports.apiMatchItem = apiMatchItem;

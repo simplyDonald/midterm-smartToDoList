@@ -158,15 +158,16 @@ const addUser = async function(user,db) {
         exports.deleteItem = deleteItem
 
 //add an endpoint for editing user profile
- const editProfile = function(email,db) {
-const values = [email, 1]
-  return db
-  .query(`UPDATE users
-      SET email=$1
+ const editProfile = function(name,db) {
+    const values = [name,1]
+    return db
+    .query(`UPDATE users
+      SET name=$1
       WHERE users.id = $2
       RETURNING *;
       `, values)
       .then((result) => {
+        console.log("result-----", result)
         return result
       })
       .catch((err) => {
