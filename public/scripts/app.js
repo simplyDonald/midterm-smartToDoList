@@ -81,7 +81,7 @@ $(document).ready(function () {
   //time display
   const loadTime = ()=>{
 
-    const NowMoment = moment().format('llll');
+    const NowMoment = moment().format('MMMM Do YYYY, h:mm:ss a');
     const $timeElement = $('#time-box');
     $timeElement.text(NowMoment);
   }

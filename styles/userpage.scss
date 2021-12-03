@@ -1,3 +1,8 @@
+
+body {
+  background: #6b7b8e;
+  background-image: url("../public/img/pattern.svg");
+}
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -8,7 +13,7 @@
   .user-logo {
     height: 30px;
     width: 30px;
-    background-color:#9370db;
+    background-color:#465C69;
     display: table-cell;
     text-align: center;
     vertical-align: middle;
@@ -55,9 +60,34 @@
 
 .list-card {
   width: 350px;
-  height: auto;
+  height: 80%;
+  background-color: inherit;
+
+}
+
+.list-group-item {
+  background-color: inherit;
+  border: 0;
+  padding: 0;
+  margin: 0;
+
 }
 
 #list-button {
   padding: 0;
 }
+
+#eat-card {
+background-color: #f64747;
+}
+
+#read-card {
+background-color: #aa8f00;
+}
+#buy-card {
+background-color: #009fd4;
+}
+#watch-card {
+background-color: #03a678;
+}
+
