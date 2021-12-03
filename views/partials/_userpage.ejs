@@ -11,29 +11,89 @@
   <!-- Bootstrap CSS CDN -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+
+  <!-- moment cdn -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <!-- App CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/userpage.css" type="text/css" />
 </head>
   <body>
     <%- include("./_navbar") %>
+
+    <!-- profile page modal -->
+    <div id="profile-modal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-sm" role="content">
+          <!-- Modal content 1-->
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title">Edit Profile </h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <div class="user-logo-section">
+                  <span class="user-logo"><%= user.first_name[0] + user.last_name[0] %> </span>
+                </div>
+                  <form action="/edit/profile">
+                    <button class="btn btn-outline-light btn-sm" type="submit">Logout</button>
+                  </form>
+                  <form data-id="<%= user.id%>" >
+                      <div class="form-row">
+                          <div class="form-group col-sm-4">
+                                  <label class="sr-only" for="first-name">First Name</label>
+                                  <input type="text" class="form-control form-control-sm mr-1" id="first-name" placeholder=<%= user.first_name %> >
+                          </div>
+                          <div class="form-group col-sm-4">
+                            <label class="sr-only" for="last-name">Last Name</label>
+                            <input type="text" class="form-control form-control-sm mr-1" id="last-name" placeholder=<%= user.last_name %>>
+                          </div>
+                          <div class="form-group col-sm-4">
+                              <label class="sr-only" for="email">Email</label>
+                              <input type="email" class="form-control form-control-sm mr-1" id="email" placeholder="<%= user.email%>">
+                          </div>
+                          <div class="form-group col-sm-4">
+                            <label class="sr-only" for="birth_date">Birthdate</label>
+                            <input type="email" class="form-control form-control-sm mr-1" id="birth_date" placeholder="<%= user.birth_date%>">
+                          </div>
+                          <div class="col-sm-auto">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox">
+                                <label class="form-check-label"> Remember me
+                                </label>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <button type="button" class="btn btn-secondary btn-sm ml-auto" data-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn btn-primary btn-sm ml-1">Save</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
 
     <!-- Add New Items Form -->
     <header id="userpage">
       <!-- <div class="new-item-field"> -->
       <form class="new-item-form" method="POST" action= "/<%= user_id %>">
         <input id="input-item" class="form-control" type="text" name= "item" placeholder="What task would you like to include?">
-        <button id="add-button" class="btn btn-submit"><img src="https://img.icons8.com/carbon-copy/100/000000/add.png"/></button>
+        <button id="add-button" class="btn btn-submit"><img src="https://img.icons8.com/fluency-systems-regular/48/000000/add--v1.png" style="width:auto;height:40px"/></button>
       </form>
       </div>
     </header>
 
     <!-- Categories Lists Containers -->
-
-    <!-- Needs Category ids to link item to list-->
     <main class="categories-container">
-  <!-- To Read List -->
+
+      <!-- To Read List -->
   <div class="list-card" style="border-radius: 15px;">
     <div class="card-body">
       <h4 class="list-name">
@@ -49,24 +109,62 @@
             </div>
 
             <div class="btn-group btn-group-toggle" data-toggle="button">
-
               <form method="POST" action="/edit/<%=item.id%>">
-                  <input class="form-input-shopping" name= "name" type="input" style="display:none"/>
-                  <button type= "submit" class="btn btn-submit save-button" style="display:none">
-                      <img src="https://img.icons8.com/emoji/48/000000/check-mark-emoji.png"/>
-                  </button>
-                </form>
-
-
-                  <button class="btn btn-submit edit-button">
-                  <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-                  </button>
-
-              <form method="POST" action="/api/todo/delete/<%=item.id%>">
-              <button type= "submit" id="delete-button" class="btn btn-submit">
-                <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-              </button>
+                <input class="form-input-shopping" name= "name" type="input" style="display:none"/>
+                <button type= "submit" class="btn btn-submit save-button" style="display:none">
+                    <img src="https://img.icons8.com/emoji/48/000000/check-mark-emoji.png"/>
+                </button>
               </form>
+
+                <button class="btn btn-submit edit-button">
+                <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:15px"/>
+                </button>
+
+            <form method="POST" action="/api/todo/delete/<%=item.id%>">
+            <button type= "submit" id="delete-button" class="btn btn-submit">
+              <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:15px"/>
+            </button>
+            </form>
+              </div>
+
+            </li>
+          </ul>
+          <% } %>
+      </div>
+    </div>
+
+      <!-- To Buy List -->
+      <div class="list-card" style="border-radius: 15px;">
+        <div class="card-body">
+          <h4 class="list-name">
+            <img class="category-img" src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/000000/external-shopping-basket-supermarket-photo3ideastudio-lineal-photo3ideastudio.png" style="width:auto;height:30px"/>
+            To Buy
+          </h4>
+          <% for(let item of shopping) { %>
+            <ul id="toBuy-items" class="list-group list-group-flush mb-0">
+              <li data-id="<%= item.id %>" class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
+                <div class="d-flex align-items-center">
+                  <input class="form-input-shopping" type="input" style="display:none"/>
+
+                  <span class= "item-text"><%= item.name %> </span>
+                </div>
+                <div class="btn-group btn-group-toggle" data-toggle="button">
+              <form method="POST" action="/edit/<%=item.id%>">
+                <input class="form-input-shopping" name= "name" type="input" style="display:none"/>
+                <button type= "submit" class="btn btn-submit save-button" style="display:none">
+                    <img src="https://img.icons8.com/emoji/48/000000/check-mark-emoji.png"/>
+                </button>
+              </form>
+
+                <button class="btn btn-submit edit-button">
+                <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:15px"/>
+                </button>
+
+            <form method="POST" action="/api/todo/delete/<%=item.id%>">
+            <button type= "submit" id="delete-button" class="btn btn-submit">
+              <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:15px"/>
+            </button>
+            </form>
               </div>
 
           </li>
@@ -94,18 +192,18 @@
                   <form method="POST" action="/edit/<%=item.id%>">
                       <input class="form-input-shopping" name= "name" type="input" style="display:none"/>
                       <button type= "submit" class="btn btn-submit save-button" style="display:none">
-                          <img src="https://img.icons8.com/emoji/48/000000/check-mark-emoji.png"/>
+                        <img src="https://img.icons8.com/fluency-systems-regular/48/000000/checked-2--v1.png" style="width:auto;height:15px"/>
                       </button>
                     </form>
 
 
                       <button class="btn btn-submit edit-button">
-                      <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                      <img class="category-img" src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:15px"/>
                       </button>
 
                   <form method="POST" action="/api/todo/delete/<%=item.id%>">
                   <button type= "submit" id="delete-button" class="btn btn-submit">
-                    <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                    <img class="category-img" src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:15px"/>
                   </button>
                   </form>
                   </div>
@@ -134,17 +232,17 @@
                   <form method="POST" action="/edit/<%=item.id%>">
                       <input class="form-input-shopping" name= "name" type="input" style="display:none"/>
                       <button type= "submit" class="btn btn-submit save-button" style="display:none">
-                          <img src="https://img.icons8.com/emoji/48/000000/check-mark-emoji.png"/>
+                        <img class="category-img" src="https://img.icons8.com/fluency-systems-regular/48/000000/checked-2--v1.png" style="width:auto;height:15px"/>
                       </button>
                     </form>
 
-                      <button class="btn btn-submit edit-button">
-                      <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                      <button  class="btn btn-submit edit-button">
+                      <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:15px"/>
                       </button>
 
                   <form method="POST" action="/api/todo/delete/<%=item.id%>">
                   <button type= "submit" id="delete-button" class="btn btn-submit">
-                    <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                    <img class="category-img" src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:15px"/>
                   </button>
                   </form>
                   </div>
@@ -155,48 +253,45 @@
         </div>
       </div>
 
-
-      <!-- To Buy List -->
-
+      <!-- Misc List -->
       <div class="list-card" style="border-radius: 15px;">
-        <div class="card-body">
-          <h5 class="list-name">
-            <img class="toBuy-img" src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/000000/external-shopping-basket-supermarket-photo3ideastudio-lineal-photo3ideastudio.png" style="width:auto;height:30px"/>
-            To Buy
-          </h5>
-          <% for(let item of shopping) { %>
-            <ul id="toBuy-items" class="list-group list-group-flush mb-0">
-              <li data-id="<%= item.id %>" class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                <div class="d-flex align-items-center">
-                  <a class= "item-text" href = "<%=item.url%>"><%= item.name %></a>
-                </div>
+      <div class="card-body">
+        <h4 class="list-name">
+          <img class="category-img" src="https://img.icons8.com/ios/50/000000/open-box.png" style="width:auto;height:30px"/>
+          Miscellaneous
+        </h4>
+        <% for(let item of shopping) { %>
+          <ul id="toBuy-items" class="list-group list-group-flush mb-0">
+            <li data-id="<%= item.id %>" class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
+              <div class="d-flex align-items-center">
+                <input class="form-input-shopping" type="input" style="display:none"/>
 
-                <div class="btn-group btn-group-toggle" data-toggle="button">
+                <span class= "item-text"><%= item.name %> </span>
+              </div>
+              <div class="btn-group btn-group-toggle" data-toggle="button">
 
-                  <form method="POST" action="/edit/<%=item.id%>">
-                      <input class="form-input-shopping" name= "name" type="input" style="display:none"/>
-                      <button type= "submit" class="btn btn-submit save-button" style="display:none">
-                          <img src="https://img.icons8.com/emoji/48/000000/check-mark-emoji.png"/>
-                      </button>
-                    </form>
+                <form method="POST" action="/api/todo/delete/<%=item.id%>">
+                    <button class="btn btn-submit save-button" style="display:none">
+                      <img class="category-img" src="https://img.icons8.com/fluency-systems-regular/48/000000/checked-2--v1.png" style="width:auto;height:15px"/>
+                    </button>
 
+                    <button class="btn btn-submit edit-button">
+                    <img class="category-img" src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:15px"/>
+                    </button>
 
-                      <button class="btn btn-submit edit-button">
-                      <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-                      </button>
+                <form method="POST" action="/api/todo/delete/<%=item.id%>">
+                <button type= "submit" id="delete-button" class="btn btn-submit">
+                  <img class="category-img" src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:15px"/>
+                </button>
+                </form>
 
-                  <form method="POST" action="/api/todo/delete/<%=item.id%>">
-                  <button type= "submit" id="delete-button" class="btn btn-submit">
-                    <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-                  </button>
-                  </form>
-
-                </div>
-              </li>
-            </ul>
-            <% } %>
-        </div>
+              </div>
+            </li>
+          </ul>
+          <% } %>
       </div>
+    </div>
+
     </main>
     <!-- JQuery Scripts CDN -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -204,7 +299,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- App JS-->
-    <!-- <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script> -->
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 

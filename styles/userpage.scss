@@ -1,24 +1,24 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  top: 0;
-  width: 100%;
-  position: fixed;
-}
-
+/***** User Page Body *****/
 #userpage {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 150px;
+  margin-top: 100px;
 }
 
 .new-item-form {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 500px;
-  padding: 20px;
+  width: 300px;
+}
+
+#input-item {
+  padding: 6px;
+}
+
+#add-button {
+  padding: 0;
 }
 
 .categories-container {
@@ -27,11 +27,74 @@
   align-items: center;
 }
 
+.card-body {
+  display: flex;
+  flex-direction: column;
+  border-style: double;
+  margin-top: 20px;
+}
+
 .list-card {
-  width: 350px;
+  width: 300px;
   height: auto;
 }
 
-#list-button {
-  padding: 0;
+.list-group-item {
+  padding: 12px;
+}
+
+button {
+  padding: 0 !important;
+}
+
+@media only screen and (min-width: 575px) {
+  #userpage {
+    margin-top: 150px;
+  }
+
+  .new-item-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+  }
+
+  .list-card {
+    width: 400px;
+    height: auto;
+  }
+}
+@media only screen and (min-width: 900px) {
+  .new-item-form {
+    width: 500px;
+  }
+
+  .categories-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: baseline;
+    padding: 10px;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    border-style: double;
+    padding: 10px;
+    margin-top: 20px;
+  }
+
+  .list-card {
+    width: 300px;
+    height: auto;
+  }
+
+  .list-name {
+    font-size: 20px;
+  }
+
+  .d-flex {
+    font-size: 12px;
+  }
 }

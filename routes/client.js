@@ -15,7 +15,8 @@ const router  = express.Router();
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    res.render("index");
+    const templateVars = {user:''}
+    res.render("index",templateVars);
   });
 
   router.get("/:user_id",(req, res) => {
@@ -26,7 +27,7 @@ module.exports = (db) => {
         // console.log("movies------", movies)
         res.render("partials/_userpage", templateVars);
   })
-      .catch(e => e.message);
+      //.catch(e => e.message);
 
   })
 

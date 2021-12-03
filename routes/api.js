@@ -63,19 +63,20 @@ const apiMatchItem = async function(itemName, categoryId){
     const result = await  axios.request(settings)
     return result.data.businesses[0].url
   }
-  if(categoryId === shoppingCategoryId){
-    var options = {
-      method: 'GET',
-      url: "https://www.amazon.com/s/?field-keywords=Harry+Potter",
-      headers: {
-        'key': 'SeClR2tlYT3lP8zIxVPhM3osO539z1K96OvgIZpG'
-      }
-    };
+  // if(categoryId === shoppingCategoryId){
+  //   var options = {
+  //     method: 'GET',
+  //     url: "https://www.amazon.com/s/?field-keywords=Harry+Potter",
+  //     "Keywords": "harry potter",
+  //     headers: {
+  //       'key': 'SeClR2tlYT3lP8zIxVPhM3osO539z1K96OvgIZpG'
+  //     }
+  //   };
 
-   const result = await axios.request(options)
-   console.log((result.data), "result")
-   return result
+  //  const result = await axios.request(options)
+  //  //console.log((result.data), "result")
+  //  return result
 }
-}
-apiMatchItem("socks", 104);
+// }
+//apiMatchItem("socks", 104);
 exports.apiMatchItem = apiMatchItem;
