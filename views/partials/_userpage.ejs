@@ -31,9 +31,6 @@
 
     <!-- Categories Lists Containers -->
 
-
-
-
     <!-- Needs Category ids to link item to list-->
     <main class="categories-container">
 
@@ -46,19 +43,31 @@
           </h5>
           <% for(let item of shopping) { %>
             <ul id="toBuy-items" class="list-group list-group-flush mb-0">
-              <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                <span class="bullet bg-primary"></span>
+              <li data-id="<%= item.id %>" class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
                 <div class="d-flex align-items-center">
-                  <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
-                  <%= item.name %>
+                  <a class= "item-text" href = "<%=item.url%>"><%= item.name %></a>
                 </div>
+
                 <div class="btn-group btn-group-toggle" data-toggle="button">
-                <button id="edit-button" class="btn btn-submit">
-                <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-                </button>
-                <button id="delete-button" class="btn btn-submit">
-                  <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-                </button>
+
+                  <form method="POST" action="/edit/<%=item.id%>">
+                      <input class="form-input-shopping" name= "name" type="input" style="display:none"/>
+                      <button type= "submit" class="btn btn-submit save-button" style="display:none">
+                          <img src="https://img.icons8.com/emoji/48/000000/check-mark-emoji.png"/>
+                      </button>
+                    </form>
+
+
+                      <button class="btn btn-submit edit-button">
+                      <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                      </button>
+
+                  <form method="POST" action="/api/todo/delete/<%=item.id%>">
+                  <button type= "submit" id="delete-button" class="btn btn-submit">
+                    <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                  </button>
+                  </form>
+
                 </div>
               </li>
             </ul>
@@ -77,17 +86,30 @@
             <ul id="toEat-items" class="list-group list-group-flush" class="list-group list-group-flush mb-0">
               <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
                 <div class="d-flex align-items-center">
-                  <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
-                  <%= item.name %>
+                  <a class= "item-text" href = "<%=item.url%>"><%= item.name %></a>
                 </div>
+
                 <div class="btn-group btn-group-toggle" data-toggle="button">
-                  <button id="edit-button" class="btn btn-submit">
-                  <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-                  </button>
-                  <button id="delete-button" class="btn btn-submit">
+
+                  <form method="POST" action="/edit/<%=item.id%>">
+                      <input class="form-input-shopping" name= "name" type="input" style="display:none"/>
+                      <button type= "submit" class="btn btn-submit save-button" style="display:none">
+                          <img src="https://img.icons8.com/emoji/48/000000/check-mark-emoji.png"/>
+                      </button>
+                    </form>
+
+
+                      <button class="btn btn-submit edit-button">
+                      <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                      </button>
+
+                  <form method="POST" action="/api/todo/delete/<%=item.id%>">
+                  <button type= "submit" id="delete-button" class="btn btn-submit">
                     <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
                   </button>
+                  </form>
                   </div>
+
               </li>
             </ul>
             <% } %>
@@ -105,18 +127,28 @@
             <ul id="toWatch-items" class="list-group list-group-flush mb-0">
               <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
                 <div class="d-flex align-items-center">
-                  <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
-                  <span class="bullet bg-primary"></span>
-                  <%= item.name %>
+                  <a class= "item-text" href = "<%=item.url%>"><%= item.name %></a>
                 </div>
+
                 <div class="btn-group btn-group-toggle" data-toggle="button">
-                  <button id="edit-button" class="btn btn-submit">
-                  <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-                  </button>
-                  <button id="delete-button" class="btn btn-submit">
+                  <form method="POST" action="/edit/<%=item.id%>">
+                      <input class="form-input-shopping" name= "name" type="input" style="display:none"/>
+                      <button type= "submit" class="btn btn-submit save-button" style="display:none">
+                          <img src="https://img.icons8.com/emoji/48/000000/check-mark-emoji.png"/>
+                      </button>
+                    </form>
+                    
+                      <button class="btn btn-submit edit-button">
+                      <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                      </button>
+
+                  <form method="POST" action="/api/todo/delete/<%=item.id%>">
+                  <button type= "submit" id="delete-button" class="btn btn-submit">
                     <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
                   </button>
+                  </form>
                   </div>
+
                 </li>
             </ul>
             <% } %>
@@ -134,18 +166,31 @@
             <ul id="toRead-items" class="list-group list-group-flush m-0">
               <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
                 <div class="d-flex align-items-center">
-                  <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
-                  <span class="bullet bg-primary"></span>
-                  <%= item.name %>
+                  <a class= "item-text" href = "<%=item.url%>"><%= item.name %></a>
+
                 </div>
+
                 <div class="btn-group btn-group-toggle" data-toggle="button">
-                  <button id="edit-button" class="btn btn-submit">
-                  <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
-                  </button>
-                  <button id="delete-button" class="btn btn-submit">
+
+                  <form method="POST" action="/edit/<%=item.id%>">
+                      <input class="form-input-shopping" name= "name" type="input" style="display:none"/>
+                      <button type= "submit" class="btn btn-submit save-button" style="display:none">
+                          <img src="https://img.icons8.com/emoji/48/000000/check-mark-emoji.png"/>
+                      </button>
+                    </form>
+
+
+                      <button class="btn btn-submit edit-button">
+                      <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-edit-interface-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
+                      </button>
+
+                  <form method="POST" action="/api/todo/delete/<%=item.id%>">
+                  <button type= "submit" id="delete-button" class="btn btn-submit">
                     <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-lineal-kiranshastry.png" style="width:auto;height:25px"/>
                   </button>
+                  </form>
                   </div>
+
               </li>
             </ul>
             <% } %>

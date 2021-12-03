@@ -1,3 +1,4 @@
+const {apiMatchItem} = require('../routes/api.js')
 
 //Get a single user from the database given their email.
 const getUserWithEmail = function(email,db) {
@@ -27,20 +28,19 @@ const getUserWithId = function(id,db) {
   });
 }
 exports.getUserWithId = getUserWithId;
-// //return all items in a list for given user
-// const allItemsForUser = async function(user,db) {
-//   const category_id = 101
-//   const values = [category_id, user]
-//   const userItems = await db
-//   .query ((`SELECT *
-//   FROM items
-//   WHERE category_id = $1
-//   AND user_id = $2
-//   `, values))
-//   return userItems;
-// }
-// exports.userItems= this.userItems;
-
+//return all items in a list for given user
+const allItemsForUser = async function(user,db) {
+  const category_id = 101
+  const values = [category_id, user]
+  const userItems = await db
+  .query ((`SELECT *
+  FROM items
+  WHERE category_id = $1
+  AND user_id = $2
+  `, values))
+  return userItems;
+}
+exports.allItemsForUser= allItemsForUser;
 
   //function that matches item to category_id:
   const categorizeItem = function(item,matchKeyWords){
@@ -96,14 +96,14 @@ const addUser = async function(user,db) {
       if(!category_id){
         category_id = 105
       }
-      const values = [category_id, user, item]
+      const url= await apiMatchItem(item, categorizeItem(item,matchKeyWords))
+      const values = [category_id, user, item,url]
       const newItem = await db
-    .query (`INSERT into items (category_id, user_id, name)
-        VALUES ($1, $2, $3)
+    .query (`INSERT into items (category_id, user_id, name,url)
+        VALUES ($1, $2, $3, $4)
         RETURNING *
       `, values)
-
-    return newItem
+    return newItem.rows[0]
   };
     exports.addItem = addItem;
 
@@ -111,7 +111,7 @@ const addUser = async function(user,db) {
     //all items in movie category
     const getDbItems= function(db,category_id){
       return db
-      .query(`SELECT name FROM items WHERE category_id = $1`, [category_id])
+      .query(`SELECT * FROM items WHERE category_id = $1`, [category_id])
       .then((result) => {
         return result.rows})
       .catch((err) => {
@@ -129,17 +129,15 @@ const addUser = async function(user,db) {
       .query(`UPDATE items
         SET name =$1
         WHERE items.id = $2
+        RETURNING *;
         `, values)
-        .then(data => {
-          const items = data.rows;
-          res.json({ items });
+        .then((result) => {
+          return result
         })
-        .catch(err => {
-          res
-            .status(500)
-            .json({ error: err.message });
+        .catch((err) => {
+          console.log(err.message);
         })
-      };
+      }
       exports.editItem = editItem;
 
     //add an endpoint for deleting item
@@ -149,8 +147,7 @@ const addUser = async function(user,db) {
           WHERE items.id = $1
           `, [item])
           .then(data => {
-            const items = data.rows;
-            res.json({ items });
+            return data.rows;
           })
           .catch(err => {
             res
@@ -160,4 +157,20 @@ const addUser = async function(user,db) {
         };
         exports.deleteItem = deleteItem
 
-
+//add an endpoint for editing user profile
+ const editProfile = function(email,db) {
+const values = [email, 1]
+  return db
+  .query(`UPDATE users
+      SET email=$1
+      WHERE users.id = $2
+      RETURNING *;
+      `, values)
+      .then((result) => {
+        return result
+      })
+      .catch((err) => {
+        console.log(err.message);
+      })
+    }
+    exports.editProfile = editProfile;
