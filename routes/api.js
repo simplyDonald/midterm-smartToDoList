@@ -67,7 +67,6 @@ const apiMatchItem = async function(itemName, categoryId){
     var options = {
       method: 'GET',
       url: "https://www.amazon.com/s/?field-keywords=Harry+Potter",
-      "Keywords": "harry potter",
       headers: {
         'key': 'SeClR2tlYT3lP8zIxVPhM3osO539z1K96OvgIZpG'
       }
