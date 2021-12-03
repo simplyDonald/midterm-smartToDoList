@@ -7,9 +7,22 @@
   </button>
 
     <!-- when user is logged in-->
+  <% if(!user){ %>
+    <form method= 'GET' action="/register">
+      <button class='btn btn-success' type='submit'>Register</button>
+    </form>
+  <% } else{ %>
     <div class="greeting-container">
       <label id="login-msg" for="user" class="font-weight-bold">Hello <%= user.first_name %></label>
-      <button class="btn btn-outline-light btn-sm" type="button" data-toggle="modal" data-target="#profile-modal">Edit Profile</button>
+      <div class="greeting-ctner-footer">
+        <span id="time-box">
+        </span>
+        <button id="edit-profile" class="btn btn-outline-light btn-sm" type="button" data-toggle="modal" data-target="#profile-modal">Edit Profile</button>
+      </div>
     </div>
+  <% } %>
   </nav>
 </header>
+
+
+

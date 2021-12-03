@@ -78,6 +78,16 @@ function addEditedItem(newItem){
 
 
 $(document).ready(function () {
+  //time display
+  const loadTime = ()=>{
+
+    const NowMoment = moment().format('llll');
+    const $timeElement = $('#time-box');
+    $timeElement.text(NowMoment);
+  }
+
+
+
 //    $('.edit-button').on('click', function (evt){
 //       evt.preventDefault();
 //       $(this).addClass("d-none");
@@ -112,6 +122,11 @@ $(document).ready(function () {
 
 //     // })
 // });
+    //function to update time and date;
+    setInterval(() => {
+      loadTime();
+    }, 1000);
+
 
 });
   //save button .on click
