@@ -158,7 +158,9 @@ const addUser = async function(user,db) {
 
 //add an endpoint for editing user profile
  const editProfile = function(name,db) {
-    const values = [name,1]
+    console.log("EDIT WORKING?")
+    const itemId= 1
+    const values = [name,itemId]
     return db
     .query(`UPDATE users
       SET name=$1
@@ -167,7 +169,7 @@ const addUser = async function(user,db) {
       `, values)
       .then((result) => {
         console.log("result-----", result)
-        return result
+        return result.rows
       })
       .catch((err) => {
         console.log(err.message);
