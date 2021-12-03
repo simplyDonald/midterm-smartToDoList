@@ -14,8 +14,9 @@ const router  = express.Router();
 
 module.exports = (db) => {
 
-  router.get("/", (req, res) => {
-    res.render("index");
+  router.get("/register", (req, res) => {
+    const templateVars = {user:null}
+    res.render("index", templateVars);
   });
 
   router.get("/:user_id",(req, res) => {
@@ -76,9 +77,10 @@ router.post("/edit/:item_id", (req,res) => {
   })
     .catch((e) => res.send(e));
 })
-
-
-
+router.post("/logout", (req, res) => {
+  // req.session.userId = null;
+  res.redirect("/login");
+});
 
 return router;
 
