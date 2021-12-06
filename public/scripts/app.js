@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     $('.card-body').on('click', '#delete-button', function (evt){
       console.log("clicked delete button!")
       $(this).closest('form').submit()
@@ -36,7 +35,14 @@ $(document).ready(function () {
       $(this).closest('form').submit()
     });
 
-
+    const loadTime = ()=>{
+      const NowMoment = moment().format('llll');
+      const $timeElement = $('#time-box');
+      $timeElement.text(NowMoment);
+    }
+    setInterval(() => {
+      loadTime();
+    }, 1000);
 
   // $('.item-text').draggable({
   //     cursor: 'move',

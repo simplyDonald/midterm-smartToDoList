@@ -1,22 +1,121 @@
-// See: https://sass-lang.com/
-
-body {
-  .row {
-    display: flex;
-    justify-content: space-around;
-
-    .form-header {
-      text-align: center;
-    }
-
-    #tagline {
-      align-self: center;
-      font-weight: 700;
-    }
-  }
+/***** App Layout *****/
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1f1f1f;
+  background-image: url("https://www.transparenttextures.com/patterns/black-paper.png");
+  top: 0;
+  width: 100%;
+  padding: 10px;
+  position: fixed;
+  z-index: 1;
 }
 
-html {
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  font-weight: 900;
+  font-size: 28px;
+  padding: 0;
+}
+
+.user-logo-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+  font-size: 30px;
+  color: #fff;
+  line-height: 60px;
+  text-align: center;
+  background: #000;
+}
+
+.user-logo:hover {
+  cursor: pointer;
+}
+
+.navbar-brand img {
+  width: auto;
+  height: 40px;
+}
+
+.greeting-container {
+  display: flex;
+  flex-direction: column;
+  align-items:center
+}
+
+#login-msg {
+  font-size: 20px;
+  padding-right: 10px;
+}
+
+#time-box {
+  display: none;
+}
+
+.modal-header {
+  background-color: #363457;
+}
+
+.modal-header .modal-title {
+  color: aliceblue;
+}
+
+.modal-header .close {
+  color: aliceblue;
+}
+
+body, html {
   margin: 0;
-  font-family: 'Roboto', sans-serif; ;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  background-image: url("https://www.transparenttextures.com/patterns/lined-paper-2.png");
+  font-family: "Gochi Hand", cursive;
+  font-size: 14px;
+  color: #403F40;
+}
+
+@media only screen and (min-width: 550px) {
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    font-weight: 900;
+    font-size: 34px;
+  }
+
+  .navbar-brand img {
+    width: auto;
+    height: initial;
+  }
+
+  .greeting-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+
+  #login-msg {
+    font-size: 26px;
+  }
+
+  #time-box {
+    display: initial;
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  body, html {
+    font-size: 16px;
+  }
 }

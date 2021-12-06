@@ -42,18 +42,6 @@ const allItemsForUser = async function(user,db) {
 }
 exports.allItemsForUser= allItemsForUser;
 
-  //function that matches item to category_id:
-  const categorizeItem = function(item,matchKeyWords){
-    let category_id;
-    let firstWord = item.toLowerCase().split(" ");
-    for (let key in matchKeyWords){
-      if (matchKeyWords[key].keyWords.includes(firstWord[0])){
-        category_id = matchKeyWords[key].categoryId
-        break;
-      }
-    }
-    return category_id;
-  }
   const matchKeyWords= {
     shopping:{
       keyWords: ["buy", "get", "purchase"],
@@ -72,7 +60,18 @@ exports.allItemsForUser= allItemsForUser;
       categoryId : 102
     }
       }
-
+//function that matches item to category_id:
+const categorizeItem = function(item,matchKeyWords){
+  let category_id;
+  let firstWord = item.toLowerCase().split(" ");
+  for (let key in matchKeyWords){
+    if (matchKeyWords[key].keyWords.includes(firstWord[0])){
+      category_id = matchKeyWords[key].categoryId
+      break;
+    }
+  }
+  return category_id;
+}
 
 
 //add user to database
