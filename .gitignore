@@ -1,6 +1,7 @@
 node_modules/
 public/styles
 package-lock.json
+.vscode/
 .env
 *.log
 *.sqlite3
