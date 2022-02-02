@@ -42,7 +42,8 @@ Go to http://localhost:8080/ in your browser.
 
 
 ## Final Product Screenshots
+
 !["Homepage"](https://github.com/simplyDonald/midterm-smartToDoList/blob/master/docs/smart%20to-do%20list-homepage.png)
 
-Admin Dashboard for performing CRUD operations on restrictions data
+Userpage for ToDoList
 !["Userpage"](https://github.com/simplyDonald/midterm-smartToDoList/blob/master/docs/userpage.png)
