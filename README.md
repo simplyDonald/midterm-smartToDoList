@@ -19,8 +19,8 @@ Users should be able to change a category of an item in case it was mis-categori
 Users should be able to register, log in, log out and update their profile.
 
 ### Getting Started
-Install dependencies using the npm install command.
-Start the web server using the npm run local command. The app will be served at http://localhost:8080/.
+Install dependencies using the 'npm install' command.
+Start the web server using the 'npm start' command. The app will be served at http://localhost:8080/.
 Go to http://localhost:8080/ in your browser.
 
 ### Dependencies
