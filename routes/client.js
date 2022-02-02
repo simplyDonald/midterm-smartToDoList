@@ -15,7 +15,8 @@ const router  = express.Router();
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    res.render("index");
+    const templateVars = {user:{}};
+    res.render("index", templateVars);
   });
 
   router.get("/:user_id",(req, res) => {
