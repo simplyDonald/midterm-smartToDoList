@@ -42,7 +42,7 @@ Go to http://localhost:8080/ in your browser.
 
 
 ## Final Product Screenshots
-!["Homepage"](https://github.com/xihai01/Pandemic-Tracker/blob/master/docs/interactive-map.gif?raw=true)
+!["Homepage"](https://github.com/simplyDonald/midterm-smartToDoList/blob/master/docs/smart%20to-do%20list-homepage.png)
 
 Admin Dashboard for performing CRUD operations on restrictions data
-!["Userpage"](https://github.com/xihai01/Pandemic-Tracker/blob/master/docs/admin.png?raw=true)
+!["Userpage"](https://github.com/simplyDonald/midterm-smartToDoList/blob/master/docs/userpage.png)
