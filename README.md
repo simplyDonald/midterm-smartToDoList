@@ -42,3 +42,7 @@ Go to http://localhost:8080/ in your browser.
 
 
 ## Final Product Screenshots
+!["Homepage"](https://github.com/xihai01/Pandemic-Tracker/blob/master/docs/interactive-map.gif?raw=true)
+
+Admin Dashboard for performing CRUD operations on restrictions data
+!["Userpage"](https://github.com/xihai01/Pandemic-Tracker/blob/master/docs/admin.png?raw=true)
