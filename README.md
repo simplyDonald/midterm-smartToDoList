@@ -11,7 +11,7 @@ Film / Series (To watch)
 Restaurants, cafes, etc. (To eat)
 Books (To read)
 Products (To buy)
-Others (misc)
+Others (miscellanous)
 In order to determine the category the app will probably need to use various API services such as those offered by Google, Wolfram Alpha, Rotten Tomatoes, Amazon, Yelp and others.
 
 Users should be able to change a category of an item in case it was mis-categorized or could not be categorized at all.
@@ -24,6 +24,7 @@ Start the web server using the 'npm start' command. The app will be served at ht
 Go to http://localhost:8080/ in your browser.
 
 ### Dependencies
+
 - Node 10.x or above
 - NPM 5.x or above
 - PG 6.x
